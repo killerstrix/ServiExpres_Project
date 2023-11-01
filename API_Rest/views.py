@@ -10,8 +10,9 @@ def registro(request):
 def LoginEmpleados(request):
     return render(request, "core/LoginEmpleados.html")
 
+def MenuEmpleados(request):
+    return render(request, "core/MenuEmpleados.html")
+
 def index(request):
     return render(request, "core/index.html")
 
-def MenuEmpleados(request):
-    return render(request, "core/MenuEmpleados.html")

@@ -5,6 +5,6 @@ urlpatterns=[
     path('', login, name="login"),
     path('registro', registro, name="registro"),
     path('LoginEmpleados', LoginEmpleados, name="LoginEmpleados"),
-    path('MenuEmpleados', MenuEmpleados, name="MenuEmpleados"),
+    path('MenuEmpleados/', MenuEmpleados, name="MenuEmpleados"),
     path('index', index, name="index"),
 ]
