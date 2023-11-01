@@ -1,0 +1,100 @@
+#cont_fondo{
+    background-image: linear-gradient(to bottom right, #33475b, #0033CC, #FF77CC, rgb(255, 122, 89));
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.Cont_Empleados{
+    border: 2px solid rgb(12, 12, 12);
+    width: 70%;
+    height: 65%;
+    margin-top: 100px;
+    margin-left: 14%;
+    background-color: white;
+    display: flex;
+    flex-direction: row; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 20px; 
+  }
+
+  .ContMenu1 {
+    width: calc(30% - 30px); /* El 5px es para el margen izquierdo */
+    height: 45%; /* Ajusta la altura según tus necesidades */
+    border: 2px solid black;
+    margin-right: 40px; /* Margen derecho entre elementos */
+  }
+
+  .imagen {
+    position: relative;
+    
+  }
+  
+  .imagen p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    background-color: #fff;
+    color: black;
+    font-size: 16px;
+    text-align: center;
+    
+  }
+
+  .boton[type="submit"][id="btnenviarL"]  {
+    width: 30%;
+    height: 50px;
+    margin-left: 31%;
+    border-radius: 10px;
+    margin-top: 15px;
+    font-weight: bold;
+    border: 3px solid black;
+    background-image: linear-gradient(to bottom right, #33475b, #0033CC, #FF77CC, rgb(255, 122, 89));
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.75);
+    color: white;
+  }
+
+  .boton[type="submit"][id="btnenviarL"]  {
+    width: 30%;
+    height: 50px;
+    margin-left: 31%;
+    border-radius: 10px;
+    margin-top: 15px;
+    font-weight: bold;
+    border: 3px solid black;
+    background-image: linear-gradient(to bottom right, #33475b, #0033CC, #FF77CC, rgb(255, 122, 89));
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.75);
+    color: white;
+  }
+
+  .boton[type="submit"][id="btnenviarL"]  {
+    width: 30%;
+    height: 50px;
+    margin-left: 31%;
+    border-radius: 10px;
+    margin-top: 15px;
+    font-weight: bold;
+    border: 3px solid black;
+    background-image: linear-gradient(to bottom right, #33475b, #0033CC, #FF77CC, rgb(255, 122, 89));
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.75);
+    color: white;
+  }
+
+  .boton[type="submit"][id="btnenviarL"]  {
+    width: 30%;
+    height: 50px;
+    margin-left: 31%;
+    border-radius: 10px;
+    margin-top: 15px;
+    font-weight: bold;
+    border: 3px solid black;
+    background-image: linear-gradient(to bottom right, #33475b, #0033CC, #FF77CC, rgb(255, 122, 89));
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.75);
+    color: white;
+  }
