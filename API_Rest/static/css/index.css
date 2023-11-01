@@ -1,0 +1,45 @@
+.cards{
+    position: relative;
+    display: flex;
+    left: 100px;
+}
+.texcont{    
+    position: relative;
+    top: -11em;
+    left: -11em;
+}
+.horario{
+    position: relative;
+    top: -21em;
+    left: -20em;
+}
+#botonc{
+    position: relative;
+    top: -20em;
+    left: -23em;
+}
+
+.titulopro{
+position: relative;
+left: 36em;
+
+}
+.email{
+    position: relative;
+    left: 70em;
+    top: -1.5em;
+
+}
+.loc{
+    position: relative;
+    left:70em;
+    top: -1.5em;
+}
+.iconemail{
+ position: relative; 
+ left: 68em;
+}
+.iconloc{
+    position: relative; 
+ left:  68em;
+}
