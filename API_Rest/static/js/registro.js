@@ -62,3 +62,26 @@ function validarR() {
 
     return html;
 }
+
+$("#btnLogOut").click(function (e) {
+    Swal.fire({
+        title: 'Estas seguro de cerrar sesion?',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Cerrar Sesión',
+        denyButtonText: `Continuar en la cuenta`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          Swal.fire('Selecciono cerrar sesión', 'Hasta luego!', 'success')
+          .then(function () {
+            window.location.href = "/login/";
+
+        });
+        } else if (result.isDenied) {
+          Swal.fire('Selecciono no cerrar sesión', '', 'error')
+        }
+      })
+});
+
+
