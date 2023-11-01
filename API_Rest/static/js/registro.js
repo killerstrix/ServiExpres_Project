@@ -78,7 +78,7 @@ $(document).ready(function () {
             if (result.isConfirmed) {
                 Swal.fire('Seleccionaste cerrar sesión', 'Hasta luego!', 'success')
                 .then(function () {
-                    window.location.href = "/login/";
+                    window.location.href = "/LoginEmpleados/";
                 });
             } else if (result.isDenied) {
                 Swal.fire('Seleccionaste no cerrar sesión', '', 'error');
