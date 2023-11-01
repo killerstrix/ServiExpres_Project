@@ -31,4 +31,17 @@ def crud_cuentas(request):
 def Generar_Informes(request):
     return render(request, "core/Generar_Informes.html")
 
+def productos(request):
+    return render(request, "core/productos.html")
+
+def perfil(request):
+    return render(request, "core/perfil.html")
+
+def servicios(request):
+    return render(request, "core/servicios.html")
+
+def pedidos(request):
+    return render(request, "core/pedidos.html")
+
+
 
