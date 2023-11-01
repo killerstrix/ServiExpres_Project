@@ -5,7 +5,7 @@ $("#btnenviarL").click(function (e) {
     } else {
         Swal.fire("Datos Validos", "Bienvenido", "success")
             .then(function () {
-                window.location.href = "";
+                window.location.href = "/index/";
 
             });
     }
@@ -38,7 +38,7 @@ $("#btnenviarLemp").click(function (e) {
     } else {
         Swal.fire("Datos Validos", "Bienvenido", "success")
             .then(function () {
-                window.location.href = "";
+                window.location.href = "/MenuEmpleados/";
 
             });
     }

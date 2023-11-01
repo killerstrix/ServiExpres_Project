@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $("#btnvolverlogin").click(function () {
-        window.location.href = "login.html";
+        window.location.href = "/login/";
     });
 });
 
@@ -11,7 +11,7 @@ $("#btnCrearCuenta").click(function (e) {
     } else {
         Swal.fire("Datos Validos", "Cuenta creada con exito", "success")
             .then(function () {
-                window.location.href = "login.html";
+                window.location.href = "/login/";
 
             });
     }
