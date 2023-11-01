@@ -63,25 +63,29 @@ function validarR() {
     return html;
 }
 
-$("#btnLogOut").click(function (e) {
-    Swal.fire({
-        title: 'Estas seguro de cerrar sesion?',
-        showDenyButton: true,
-        showCancelButton: true,
-        confirmButtonText: 'Cerrar Sesión',
-        denyButtonText: `Continuar en la cuenta`,
-      }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-          Swal.fire('Selecciono cerrar sesión', 'Hasta luego!', 'success')
-          .then(function () {
-            window.location.href = "/login/";
+$(document).ready(function () {
+    // Configura el evento "click" para el enlace con ID "btnLogOut"
+    $("#btnLogOut").click(function (e) {
+        e.preventDefault(); // Previene el comportamiento predeterminado del enlace
 
+        Swal.fire({
+            title: '¿Estás seguro de cerrar sesión?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Cerrar Sesión',
+            denyButtonText: `Continuar en la cuenta`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire('Seleccionaste cerrar sesión', 'Hasta luego!', 'success')
+                .then(function () {
+                    window.location.href = "/login/";
+                });
+            } else if (result.isDenied) {
+                Swal.fire('Seleccionaste no cerrar sesión', '', 'error');
+            }
         });
-        } else if (result.isDenied) {
-          Swal.fire('Selecciono no cerrar sesión', '', 'error')
-        }
-      })
+    });
 });
+
 
 
