@@ -25,25 +25,31 @@
                             <div class="card-body" style="background-color: white;">
                                 <form action="/registrarProductos/" method="POST">{% csrf_token %}
                                     <div class="form-group">
-                                        <input type="text" id="txtId_Producto" name="txtId_Producto" class="form-control" placeholder="Id_Producto" minlength="7" maxlength="7" required>
+                                        <input type="text" id="txtId_Producto" name="txtId_Producto" class="form-control" placeholder="Id_Producto" minlength="1" maxlength="7" required>
                                         <br>
-                                        <input type="text" id="txtNombre_Producto" name="txtNombre_Producto" class="form-control" placeholder="Nombre_Producto" minlength="6"  maxlength="30" required>
+                                        <input type="text" id="txtNombre_Producto" name="txtNombre_Producto" class="form-control" placeholder="Nombre_Producto" minlength="4"  maxlength="30" required>
                                         <br>
                                         <input type="number" id="txtstock_Producto" name="txtstock_Producto" class="form-control" placeholder="stock_Producto" minlength="4" maxlength="10" required>
                                         <br>
-                                        <input type="text" id="txtdescripcion_Producto" name="txtdescripcion_Producto" class="form-control" placeholder="descripcion_Producto" minlength="30" maxlength="100" required>
+                                        <input type="text" id="txtdescripcion_Producto" name="txtdescripcion_Producto" class="form-control" placeholder="descripcion_Producto" minlength="10" maxlength="100" required>
                                         <br>
                                         <input type="number" id="txtPrecio_Producto" name="txtPrecio_Producto" class="form-control" placeholder="Precio_Producto" minlength="4" maxlength="9" required>
                                         <br>
-                                        <input type="text" id="txtCategoria_Producto" name="txtCategoria_Producto" class="form-control" placeholder="Categoria_Producto" minlength="10" maxlength="30" required>
+                                        <input type="text" id="txtCategoria_Producto" name="txtCategoria_Producto" class="form-control" placeholder="Categoria_Producto" minlength="8" maxlength="30" required>
                                         <br>
-                                        <input type="text" id="txtMarca_Producto" name="txtMarca_Producto" class="form-control" placeholder="Marca_Producto" minlength="10" maxlength="30" required>
+                                        <input type="text" id="txtMarca_Producto" name="txtMarca_Producto" class="form-control" placeholder="Marca_Producto" minlength="6" maxlength="30" required>
                                         <br>
-                                        <input type="text" id="txtProveedor_Producto" name="txtProveedor_Producto" class="form-control" placeholder="Proveedor_Producto" minlength="20" maxlength="40" required>
+                                        <input type="text" id="txtProveedor_Producto" name="txtProveedor_Producto" class="form-control" placeholder="Proveedor_Producto" minlength="10" maxlength="40" required>
                                     </div>
                                     <br>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                                    <div class="row" style="margin-left: 50px; display: flex;">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-danger btn-block text-white">Salir</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
