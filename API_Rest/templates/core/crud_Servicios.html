@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  {% load static %}
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+  </head>
+    <body>
+        <div id="cont_fondo"> 
+            <div class="container py-4">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                        <h2>Gestion de Servicios</h2>
+                        
+                        <div class="alert alert-dismissible alert-success">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong class="text-dark"></strong>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body" style="background-color: white;">
+                                <form action="/registrarServicios/" method="POST">{% csrf_token %}
+                                    <div class="form-group">
+                                        <input type="text" id="txtId_Servicio" name="txtId_Servicio" class="form-control" placeholder="Id_Servicio" minlength="1" maxlength="7" required>
+                                        <br>
+                                        <input type="text" id="txtNombre_Servicio" name="txtNombre_Servicio" class="form-control" placeholder="Nombre_Servicio" minlength="4"  maxlength="30" required>
+                                        <br>
+                                        <input type="text" id="txtTipo_Servicio" name="txtTipo_Servicio" class="form-control" placeholder="Tipo_Servicio" minlength="4" maxlength="20" required>
+                                        <br>
+                                        <input type="number" id="txtPrecio_Servicio" name="txtPrecio_Servicio" class="form-control" placeholder="Precio_Servicio" minlength="5" maxlength="9" required>
+                                        <br>
+                                        <input type="text" id="txtPersonal_cargo" name="txtPersonal_cargo" class="form-control" placeholder="Personal_cargo" minlength="8" maxlength="40" required>
+                                        <br>
+                                    </div>
+                                    <br>
+                                    <div class="row" style="margin-left: 50px; display: flex;">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-danger btn-block text-white">Salir</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+                        <h1>Lista de Servicios</h1>
+                        <div class="table-responsive py-2">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Id_Servicio</th>
+                                        <th>Nombre_Servicio</th>
+                                        <th>Tipo_Servicio</th>
+                                        <th>Precio_Servicio</th>
+                                        <th>Personal_cargo</th>              
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for s in servicios %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td>{{s.Id_Servicio}}</td>
+                                        <td>{{s.Nombre_Servicio}}</td>
+                                        <td>{{s.Tipo_Servicio}}</td>
+                                        <td>{{s.Precio_Servicio}}</td>
+                                        <td>{{s.Personal_cargo}}</td>
+                                        
+                                        <td><a href="/edicionServicio/{{s.Id_Servicio}}" class="btn btn-info">Editar</a></td>
+                                        <td><a href="/EliminarServicio/{{s.Id_Servicio}}" class="btn btn-danger" id="btneliminar">Eliminar</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{% static 'js/registro.js' %}"></script>
+</body>
+</html>

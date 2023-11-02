@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from .models import Producto
+from .models import Producto, Servicio
 
 
 # Create your views her.
@@ -33,6 +33,11 @@ def crud_productos(request):
     return render(request, "core/crud_productos.html", {"productos": productos})
 
 
+def crud_Servicios(request):
+    servicios = Servicio.objects.all()
+    return render(request, "core/crud_Servicios.html", {"servicios": servicios})
+
+
 def registrarProductos(request):
     id_producto = request.POST["txtId_Producto"]
     nombre_producto = request.POST["txtNombre_Producto"]
@@ -58,6 +63,25 @@ def registrarProductos(request):
     return redirect(reverse("crud_productos"))
 
 
+def registrarServicios(request):
+    id_servicio = request.POST["txtId_Servicio"]
+    nombre_servicio = request.POST["txtNombre_Servicio"]
+    tipo_servicio = request.POST["txtTipo_Servicio"]
+    precio_servicio = request.POST["txtPrecio_Servicio"]
+    personal_cargo = request.POST["txtPersonal_cargo"]
+
+    servicio = Servicio()
+    servicio.Id_Servicio = id_servicio
+    servicio.Nombre_Servicio = nombre_servicio
+    servicio.Tipo_Servicio = tipo_servicio
+    servicio.Precio_Servicio = precio_servicio
+    servicio.Personal_cargo = personal_cargo
+
+    servicio.save()
+
+    return redirect(reverse("crud_Servicios"))
+
+
 def eliminarProducto(request, Id_Producto):
     producto = Producto.objects.get(Id_Producto=Id_Producto)
     producto.delete()
@@ -65,9 +89,21 @@ def eliminarProducto(request, Id_Producto):
     return redirect(reverse("crud_productos"))
 
 
+def EliminarServicio(request, Id_Servicio):
+    servicio = Servicio.objects.get(Id_Servicio=Id_Servicio)
+    servicio.delete()
+
+    return redirect(reverse("crud_Servicios"))
+
+
 def edicionProducto(request, Id_Producto):
     producto = Producto.objects.get(Id_Producto=Id_Producto)
     return render(request, "core/edicionProducto.html", {"producto": producto})
+
+
+def edicionServicio(request, Id_Servicio):
+    servicio = Servicio.objects.get(Id_Servicio=Id_Servicio)
+    return render(request, "core/edicionServicio.html", {"servicio": servicio})
 
 
 def EditarProductos(request):
@@ -95,8 +131,23 @@ def EditarProductos(request):
     return redirect(reverse("crud_productos"))
 
 
-def crud_Servicios(request):
-    return render(request, "core/crud_Servicios.html")
+def EditarServicios(request):
+    id_servicio = request.POST["txtId_Servicio"]
+    nombre_servicio = request.POST["txtNombre_Servicio"]
+    tipo_servicio = request.POST["txtTipo_Servicio"]
+    precio_servicio = request.POST["txtPrecio_Servicio"]
+    personal_cargo = request.POST["txtPersonal_cargo"]
+
+    servicio = Servicio.objects.get(Id_Servicio=id_servicio)
+    servicio = Servicio()
+    servicio.Id_Servicio = id_servicio
+    servicio.Nombre_Servicio = nombre_servicio
+    servicio.Tipo_Servicio = tipo_servicio
+    servicio.Precio_Servicio = precio_servicio
+    servicio.Personal_cargo = personal_cargo
+    servicio.save()
+
+    return redirect(reverse("crud_Servicios"))
 
 
 def crud_cuentas(request):

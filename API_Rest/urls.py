@@ -17,6 +17,10 @@ from .views import (
     eliminarProducto,
     edicionProducto,
     EditarProductos,
+    registrarServicios,
+    EliminarServicio,
+    edicionServicio,
+    EditarServicios,
 )
 
 urlpatterns = [
@@ -31,6 +35,10 @@ urlpatterns = [
     path("edicionProducto/<Id_Producto>", edicionProducto, name="edicionProducto"),
     path("EditarProductos/", EditarProductos, name="EditarProductos"),
     path("crud_Servicios/", crud_Servicios, name="crud_Servicios"),
+    path("registrarServicios/", registrarServicios, name="registrarServicios"),
+    path("EliminarServicio/<Id_Servicio>", EliminarServicio, name="EliminarServicio"),
+    path("edicionServicio/<Id_Servicio>", edicionServicio, name="edicionServicio"),
+    path("EditarServicios/", EditarServicios, name="EditarServicios"),
     path("crud_cuentas/", crud_cuentas, name="crud_cuentas"),
     path("Generar_Informes/", Generar_Informes, name="Generar_Informes"),
     path("registro/", registro, name="registro"),

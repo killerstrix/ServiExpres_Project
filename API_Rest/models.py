@@ -19,14 +19,7 @@ class Producto(models.Model):
 class Servicio(models.Model):
     Id_Servicio = models.CharField(primary_key=True, max_length=7)
     Nombre_Servicio = models.CharField(max_length=30)
-    Tipo_Servicio = models.CharField(
-        max_length=20,
-        choices=(
-            ("mantencion", "Mantención"),
-            ("revision_tecnica", "Revisión Técnica"),
-        ),
-        default="mantencion",
-    )
+    Tipo_Servicio = models.CharField(max_length=20)
     Precio_Servicio = models.IntegerField()
     Personal_cargo = models.CharField(max_length=40)
 
