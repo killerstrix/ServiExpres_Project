@@ -65,8 +65,7 @@
                                 <h5 class="card-title">servicio 1</h5>
                                 <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
+                                
                                 </div>
                             </div>
                         
@@ -76,8 +75,7 @@
                                 <h5 class="card-title">servicio 2</h5>
                                 <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
+                                
                                 </div>
                             </div>
                         <!-- card3 --> 
@@ -86,13 +84,17 @@
                                 <h5 class="card-title">servicio 3</h5>
                                 <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
                                 </div>
                             </div>
                         
                         </div>
-                            <button type="button" class="btn btn-secondary">Mas servicios</button>
+                        <button type="button" class="btn btn-secondary" id="services-button">Mas servicios</button>
+
+                        <script>
+                            document.getElementById("services-button").addEventListener("click", function () {
+                                window.location.href = "{% url 'servicios' %}";
+                            });
+                        </script>
                     </div>
                     
                 </div>
@@ -133,7 +135,35 @@
                             <h5>7am-6pm</h5>
                             
                         </div>
-                        <button type="button" class="btn btn-secondary" id="botonc">Contactanos</button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Contactar
+                          </button>
+                          
+                          <!-- Modal -->
+                          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Formulario</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                      </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancelar</button>
+                                  <button type="button" class="btn btn-primary">Enviar</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                     </div>
                 </div>
                 
@@ -148,7 +178,7 @@
             </div>
         </div>
         <div class="titulopro">
-            <h3>Ya confían en nosotros</h3>
+            
 
         </div>    
 

@@ -13,7 +13,7 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% url 'index' %}">Serviexpress</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -41,5 +41,47 @@
             </div>
         </nav>
     </header>
+    <div class="container">
+        <h3>Servicios</h3>
+        <div class="row">
+            <div class="col-md-3">
+                <h4>Filtrar por Categoría</h4>
+                <!-- Agrega tus filtros de categoría aquí si es necesario -->
+            </div>
+            <div class="col-md-9">
+                <h4>Lista de Servicios</h4>
+                <div class="row">
+                    {% for servicio in servicios %}
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <!-- Agrega la imagen de tu servicio aquí si está disponible -->
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ servicio.Nombre_Servicio }}</h5>
+                                    <p class="card-text">
+                                        Tipo de Servicio: {{ servicio.Tipo_Servicio }}<br>
+                                        Precio: ${{ servicio.Precio_Servicio }}
+                                        <!-- Agrega más información del servicio aquí si es necesario -->
+                                    </p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Personal a Cargo: {{ servicio.Personal_cargo }}</li>
+                                    <!-- Agrega más detalles del servicio si es necesario -->
+                                </ul>
+                                <div class="card-body">
+                                    <!-- Agrega enlaces o botones según sea necesario, por ejemplo, para ver los detalles del servicio o pedirlo -->
+                                    <a href="#" class="card-link">Detalles</a>
+                                    <a href="#" class="card-link">Pedir Hora</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <div class="col-md-12">
+                            <p>Servicios no disponibles</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
