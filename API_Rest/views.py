@@ -1,9 +1,45 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from .models import Producto, Servicio
+from .models import Producto, Servicio, Cuenta_Empleado
+
 def productos(request):
-    # Query all products from the Producto model
-    products = Producto.objects.all()
+    productos = Producto.objects.all()
+    return render(request, "core/productos.html", {"productos": productos})
+
+def crud_productos(request):
+    productos = Producto.objects.all()
+    return render(request, "core/crud_productos.html", {"productos": productos})
+
+def crud_Empleados(request):
+    cuenta_empleado = Cuenta_Empleado.objects.all()
+    return render(request, "core/crud_cuentas.html", {"cuenta_empleado": cuenta_empleado})
+
+def registrarEmpleado(request):
+    Id_Empleado = request.POST["txtId_Empleado"]
+    Primer_Nombre = request.POST["txtPrimer_nombre_Empleado"]
+    Segundo_Nombre = request.POST["txtSegundo_nombre_Empleado"]
+    Primer_Apellido = request.POST["txtPrimer_Apellido"]
+    Segundo_Apellido = request.POST["txtSegundo_Apellido"]
+    Direccion = request.POST["txtDireccion"]
+    Edad = request.POST["txtEdad"]
+    Cargo = request.POST["txtCargo"]
+
+    cuenta_empleado = Cuenta_Empleado()
+    cuenta_empleado.Id_Empleado = Id_Empleado
+    cuenta_empleado.Primer_Nombre = Primer_Nombre
+    cuenta_empleado.Segundo_Nombre = Segundo_Nombre
+    cuenta_empleado.Primer_Apellido = Primer_Apellido
+    cuenta_empleado.Segundo_Apellido = Segundo_Apellido
+    cuenta_empleado.Direccion = Direccion
+    cuenta_empleado.Edad = Edad 
+    cuenta_empleado.Cargo = Cargo 
+
+    cuenta_empleado.save()
+
+    return redirect(reverse("crud_cuentas"))
+def productos(request):
+    # Consulta todos los productos desde el modelo Producto
+    productos = Producto.objects.all()
 
     return render(request, 'core/productos.html', {"productos": productos})
 
@@ -32,9 +68,6 @@ def index(request):
     return render(request, "core/index.html")
 
 
-def crud_productos(request):
-    productos = Producto.objects.all()
-    return render(request, "core/crud_productos.html", {"productos": productos})
 
 
 def crud_Servicios(request):

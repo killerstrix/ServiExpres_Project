@@ -23,7 +23,7 @@
 
                         <div class="card">
                             <div class="card-body" style="background-color: white;">
-                                <form action="/registrarProductos/" method="POST">{% csrf_token %}
+                                <form action="/crud_cuentas/" method="POST">{% csrf_token %}
                                     <div class="form-group">
                                         <input type="text" id="txtId_Empleado" name="txtId_Empleado" class="form-control" placeholder="Id_Producto" minlength="1" maxlength="7" required>
                                         <br>
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
-                        <h1>Lista de Productos</h1>
+                        <h1>Lista de Cuentas</h1>
                         <div class="table-responsive py-2">
                             <table class="table table-striped">
                                 <thead>
@@ -74,19 +74,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for p in productos %}
+                                    {% for p in cuenta_empleado %}
                                     <tr>
                                         <td>{{forloop.counter}}</td>
-                                        <td>{{p.Id_Producto}}</td>
-                                        <td>{{p.Nombre_Producto}}</td>
-                                        <td>{{p.stock_Producto}}</td>
-                                        <td>{{p.descripcion_Producto}}</td>
-                                        <td>{{p.Precio_Producto}}</td>
-                                        <td>{{p.Categoria_Producto}}</td>
-                                        <td>{{p.Marca_Producto}}</td>
-                                        <td>{{p.Proveedor_Producto}}</td>
-                                        <td><a href="/edicionProducto/{{p.Id_Empleado}}" class="btn btn-info">Editar</a></td>
-                                        <td><a href="/eliminarProducto/{{p.Id_Empleado}}" class="btn btn-danger" id="btneliminar">Eliminar</a></td>
+                                        <td>{{p.Id_Empleado}}</td>
+                                        <td>{{p.Primer_Nombre}}</td>
+                                        <td>{{p.Segundo_Nombre}}</td>
+                                        <td>{{p.Primer_Apellido}}</td>
+                                        <td>{{p.Segundo_Apellido}}</td>
+                                        <td>{{p.Direccion}}</td>
+                                        <td>{{p.Edad}}</td>
+                                        <td>{{p.PCargo}}</td>
+                                        
                                     </tr>
                                     {% endfor %}
                                 </tbody>

@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $("#btnvolverlogin").click(function () {
-        window.location.href = "/login/";
+        window.location.href = "/";
     });
 });
 
@@ -11,7 +11,7 @@ $("#btnCrearCuenta").click(function (e) {
     } else {
         Swal.fire("Datos Validos", "Cuenta creada con exito", "success")
             .then(function () {
-                window.location.href = "/login/";
+                window.location.href = "";
 
             });
     }
@@ -48,7 +48,7 @@ function validarR() {
     }
     
 
-    if (NumTel === "" || parseInt(NumTel) > 99999999 || parseInt(NumTel) < 10000000) {
+    if (NumTel === "" || parseInt(NumTel) > 99999999 || parseInt(NumTel) < 1000000) {
         html += "-El número telefónico debe tener 8 o 9 dígitos<br>";
     }
 
