@@ -154,10 +154,6 @@ def crud_cuentas(request):
     return render(request, "core/crud_cuentas.html")
 
 
-def Generar_Informes(request):
-    return render(request, "core/Generar_Informes.html")
-
-
 def productos(request):
     return render(request, "core/productos.html")
 

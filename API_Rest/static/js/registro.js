@@ -1,8 +1,7 @@
-$(document).ready(function () {
-    $("#btnvolverlogin").click(function () {
-        window.location.href = "/login/";
-    });
+$("#btnvolverlogin").click(function () {
+    window.location.href = "/login/";
 });
+
 
 $("#btnCrearCuenta").click(function (e) {
     var erroresR = validarR();
