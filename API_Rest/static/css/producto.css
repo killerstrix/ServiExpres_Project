@@ -1,0 +1,15 @@
+.productos{
+    position: relative;
+    display: flex;
+    padding: 10px;
+
+}
+.card1{
+    padding: 30px;
+
+}
+
+.card2{
+    padding: 30px;
+
+}

@@ -10,7 +10,7 @@ def crud_productos(request):
     productos = Producto.objects.all()
     return render(request, "core/crud_productos.html", {"productos": productos})
 
-def crud_Empleados(request):
+def crud_empleados(request):
     cuenta_empleado = Cuenta_Empleado.objects.all()
     return render(request, "core/crud_cuentas.html", {"cuenta_empleado": cuenta_empleado})
 

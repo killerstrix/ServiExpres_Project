@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serviexpress</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="../../static/css/producto.css" rel="stylesheet">
     <!-- Incluye los enlaces a los estilos y scripts de Ionic aquí -->
 </head>
 <body>
@@ -41,47 +42,39 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <h3>Servicios</h3>
-        <div class="row">
-            <div class="col-md-3">
-                <h4>Filtrar por Categoría</h4>
-                <!-- Agrega tus filtros de categoría aquí si es necesario -->
-            </div>
-            <div class="col-md-9">
-                <h4>Lista de Servicios</h4>
-                <div class="row">
-                    {% for servicio in servicios %}
-                        <div class="col-md-4 mb-3">
-                            <div class="card">
-                                <!-- Agrega la imagen de tu servicio aquí si está disponible -->
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ servicio.Nombre_Servicio }}</h5>
-                                    <p class="card-text">
-                                        Tipo de Servicio: {{ servicio.Tipo_Servicio }}<br>
-                                        Precio: ${{ servicio.Precio_Servicio }}
-                                        <!-- Agrega más información del servicio aquí si es necesario -->
-                                    </p>
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Personal a Cargo: {{ servicio.Personal_cargo }}</li>
-                                    <!-- Agrega más detalles del servicio si es necesario -->
-                                </ul>
-                                <div class="card-body">
-                                    <!-- Agrega enlaces o botones según sea necesario, por ejemplo, para ver los detalles del servicio o pedirlo -->
-                                    <a href="#" class="card-link">Detalles</a>
-                                    <a href="#" class="card-link">Pedir Hora</a>
-                                </div>
-                            </div>
-                        </div>
-                    {% empty %}
-                        <div class="col-md-12">
-                            <p>Servicios no disponibles</p>
-                        </div>
-                    {% endfor %}
-                </div>
+    <div class="productos">
+        
+        <div class="card1">
+        <div class="card" style="width: 18rem;">
+            <img src="https://blog.reparacion-vehiculos.es/hs-fs/hubfs/Im%C3%A1genes_Post/Julio%202018/errores%20cambio-aceite.jpg?width=800&name=errores%20cambio-aceite.jpg"
+             class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">Revision aceite</h5>
+            <p class="card-text">Mantenimiento</p>
+            <p class="card-text">$4.000</p>
+            
+            
+            <a href="#" class="btn btn-primary">Comprar</a>
             </div>
         </div>
     </div>
+    <div class="card2">
+        <div class="card" style="width: 18rem;">
+            <img src="https://www.neumaticossoledad.com/wp-content/uploads/2023/01/cambio-de-neumaticos-a-domicilio-1080x675.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">Cambio de neumaticos</h5>
+            <p class="card-text">Mantenimiento</p>
+            <p class="card-text">marca: michelin</p>
+            <p class="card-text">$4.000</p>
+
+
+            <a href="#" class="btn btn-primary">Comprar</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
 </body>
 </html>
