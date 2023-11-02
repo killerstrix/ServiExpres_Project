@@ -14,6 +14,9 @@ from .views import (
     crud_Servicios,
     crud_cuentas,
     Generar_Informes,
+    eliminarProducto,
+    edicionProducto,
+    EditarProductos,
 )
 
 urlpatterns = [
@@ -24,6 +27,9 @@ urlpatterns = [
     path("index/", index, name="index"),
     path("crud_productos/", crud_productos, name="crud_productos"),
     path("registrarProductos/", registrarProductos, name="registrarProductos"),
+    path("eliminarProducto/<Id_Producto>", eliminarProducto, name="eliminarProducto"),
+    path("edicionProducto/<Id_Producto>", edicionProducto, name="edicionProducto"),
+    path("EditarProductos/", EditarProductos, name="EditarProductos"),
     path("crud_Servicios/", crud_Servicios, name="crud_Servicios"),
     path("crud_cuentas/", crud_cuentas, name="crud_cuentas"),
     path("Generar_Informes/", Generar_Informes, name="Generar_Informes"),

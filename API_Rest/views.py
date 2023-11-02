@@ -58,6 +58,43 @@ def registrarProductos(request):
     return redirect(reverse("crud_productos"))
 
 
+def eliminarProducto(request, Id_Producto):
+    producto = Producto.objects.get(Id_Producto=Id_Producto)
+    producto.delete()
+
+    return redirect(reverse("crud_productos"))
+
+
+def edicionProducto(request, Id_Producto):
+    producto = Producto.objects.get(Id_Producto=Id_Producto)
+    return render(request, "core/edicionProducto.html", {"producto": producto})
+
+
+def EditarProductos(request):
+    id_producto = request.POST["txtId_Producto"]
+    nombre_producto = request.POST["txtNombre_Producto"]
+    stock_producto = request.POST["txtstock_Producto"]
+    descripcion_producto = request.POST["txtdescripcion_Producto"]
+    precio = request.POST["txtPrecio_Producto"]
+    categoria = request.POST["txtCategoria_Producto"]
+    Marca = request.POST["txtMarca_Producto"]
+    Proveedor = request.POST["txtProveedor_Producto"]
+
+    producto = Producto.objects.get(Id_Producto=id_producto)
+    producto = Producto()
+    producto.Id_Producto = id_producto
+    producto.Nombre_Producto = nombre_producto
+    producto.stock_Producto = stock_producto
+    producto.descripcion_Producto = descripcion_producto
+    producto.Precio_Producto = precio
+    producto.Categoria_Producto = categoria
+    producto.Marca_Producto = Marca
+    producto.Proveedor_Producto = Proveedor
+    producto.save()
+
+    return redirect(reverse("crud_productos"))
+
+
 def crud_Servicios(request):
     return render(request, "core/crud_Servicios.html")
 
