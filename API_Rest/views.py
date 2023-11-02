@@ -1,7 +1,11 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import Producto, Servicio
+def productos(request):
+    # Query all products from the Producto model
+    products = Producto.objects.all()
 
+    return render(request, 'core/productos.html', {"productos": productos})
 
 # Create your views her.
 def login(request):
