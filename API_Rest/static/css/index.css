@@ -1,8 +1,8 @@
-.cards{
-    position: relative;
-    display: flex;
-    left: 100px;
+
+.cards {
+    display: inline-flex;
 }
+
 .texcont{    
     position: relative;
     top: -11em;
@@ -27,7 +27,7 @@ left: 36em;
 .email{
     position: relative;
     left: 70em;
-    top: -1.5em;
+    top: -1.5em; 
 
 }
 .loc{
