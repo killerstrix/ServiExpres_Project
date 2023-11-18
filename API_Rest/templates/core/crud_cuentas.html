@@ -75,19 +75,19 @@
                                 </thead>
                                 <tbody>
                                     {% for p in cuenta_empleado %}
-                                    <tr>
-                                        <td>{{forloop.counter}}</td>
-                                        <td>{{p.Id_Empleado}}</td>
-                                        <td>{{p.Primer_Nombre}}</td>
-                                        <td>{{p.Segundo_Nombre}}</td>
-                                        <td>{{p.Primer_Apellido}}</td>
-                                        <td>{{p.Segundo_Apellido}}</td>
-                                        <td>{{p.Direccion}}</td>
-                                        <td>{{p.Edad}}</td>
-                                        <td>{{p.Cargo}}</td>
-                                        <td><a href="" class="btn btn-info">Editar</a></td>
-                                        <td><a href="" class="btn btn-danger" id="btneliminar">Eliminar</a></td>
-                                    </tr>
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td>{{ p.Id_Empleado }}</td>
+                                            <td>{{ p.Primer_Nombre }}</td>
+                                            <td>{{ p.Segundo_Nombre }}</td>
+                                            <td>{{ p.Primer_Apellido }}</td>
+                                            <td>{{ p.Segundo_Apellido }}</td>
+                                            <td>{{ p.Direccion }}</td>
+                                            <td>{{ p.Edad }}</td>
+                                            <td>{{ p.Cargo }}</td>
+                                            <td><a href="" class="btn btn-info">Editar</a></td>
+                                            <td><a href="" class="btn btn-danger" id="btneliminar">Eliminar</a></td>
+                                        </tr>
                                     {% endfor %}
                                 </tbody>
                             </table>    

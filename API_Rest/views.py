@@ -3,6 +3,10 @@ from django.urls import reverse
 from .models import Producto, Servicio, Cuenta_Empleado
 from openpyxl import Workbook
 from django.http import HttpResponse
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from django.contrib.auth.hashers import check_password
+from .models import Cuenta_Empleado
 
 def productos(request):
     productos = Producto.objects.all()
@@ -190,7 +194,8 @@ def EditarServicios(request):
 
 
 def crud_cuentas(request):
-    return render(request, "core/crud_cuentas.html")
+    cuenta_empleado = Cuenta_Empleado.objects.all()
+    return render(request, "core/crud_cuentas.html", {"cuenta_empleado": cuenta_empleado})
 
 
 def Generar_Informes(request):
@@ -249,3 +254,29 @@ def generar_informe(request):
     wb.save(response)
 
     return response
+
+def login(request):
+    if request.method == "POST":
+        username = request.POST.get("txtIdEmp")
+        password = request.POST.get("txtPasswordEmp")
+
+        try:
+            # Buscar al usuario en la base de datos
+            empleado = Cuenta_Empleado.objects.get(Id_Empleado=username)
+
+            # Verificar la contraseña
+            if check_password(password, empleado.Contraseña):
+                if empleado.Cargo == "cliente":
+                    # Usuario es cliente, redirigir al index
+                    return redirect("index")
+                else:
+                    # Usuario no es cliente, mostrar mensaje de denegación
+                    messages.error(request, 'Acceso denegado para no clientes.')
+            else:
+                # Contraseña incorrecta
+                messages.error(request, 'Contraseña incorrecta.')
+        except Cuenta_Empleado.DoesNotExist:
+            # Usuario no encontrado
+            messages.error(request, 'Usuario no encontrado.')
+
+    return render(request, "core/login.html")
