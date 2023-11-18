@@ -22,6 +22,7 @@ from .views import (
     edicionServicio,
     EditarServicios,
     registrarEmpleado,
+    generar_informe,
 )
 
 urlpatterns = [
@@ -48,4 +49,5 @@ urlpatterns = [
     path("perfil/", perfil, name="perfil"),
     path("servicios/", servicios, name="servicios"),
     path("pedidos/", pedidos, name="pedidos"),
+    path('generar_informe/', generar_informe, name='generar_informe'),
 ]

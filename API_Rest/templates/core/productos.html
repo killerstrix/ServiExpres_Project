@@ -45,35 +45,21 @@
     </header>
     <div class="productos">
         
-        <div class="card1">
-        <div class="card" style="width: 18rem;">
-            <img src="https://http2.mlstatic.com/D_NQ_NP_626173-MLC53857056987_022023-O.webp"
-             class="card-img-top" alt="...">
-            <div class="card-body">
-            <h5 class="card-title">aceite</h5>
-            <p class="card-text">aceite motor 10-40</p>
-            <p class="card-text">$35000</p>
-            <p class="card-text">marca: aceitito</p>
-            
-            <a href="#" class="btn btn-primary">Comprar</a>
-            </div>
-        </div>
-    </div>
-    <div class="card2">
-        <div class="card" style="width: 18rem;">
-            <img src="https://otroadmin.cambiatuneumatico.com/img/subproduct-family/goodyear-efficientgrip-rof-l1.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-            <h5 class="card-title">neumatico</h5>
-            <p class="card-text">neumatico 205/55 r16 91w</p>
-            <p class="card-text">marca: michelin</p>
-            <p class="card-text">$150.000</p>
-
-
-            <a href="#" class="btn btn-primary">Comprar</a>
-            </div>
-        </div>
-    </div>
-</div>
+        <div class="productos">
+            {% for producto in productos %}
+                <div class="card{{ forloop.counter }}">
+                    <div class="card" style="width: 18rem;">
+                        
+                        <div class="card-body">
+                            <h5 class="card-title">{{ producto.Nombre_Producto }}</h5>
+                            <p class="card-text">{{ producto.descripcion_Producto }}</p>
+                            <p class="card-text">${{ producto.Precio_Producto }}</p>
+                            <p class="card-text">marca: {{ producto.Marca_Producto }}</p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
 </div>
 </body>
 </html>

@@ -22,24 +22,24 @@
 .titulopro{
 position: relative;
 left: 36em;
+}
 
+footer {
+    background-color: #333;
+    color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
 }
-.email{
-    position: relative;
-    left: 70em;
-    top: -1.5em; 
 
+.iconemail, .iconloc {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
 }
-.loc{
-    position: relative;
-    left:70em;
-    top: -1.5em;
-}
-.iconemail{
- position: relative; 
- left: 68em;
-}
-.iconloc{
-    position: relative; 
- left:  68em;
+
+.d-block {
+    width: 80%; /* Ajusta el tamaño de las imágenes según tus necesidades */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }

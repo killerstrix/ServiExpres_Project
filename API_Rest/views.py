@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import Producto, Servicio, Cuenta_Empleado
+from openpyxl import Workbook
+from django.http import HttpResponse
 
 def productos(request):
     productos = Producto.objects.all()
@@ -196,7 +198,9 @@ def Generar_Informes(request):
 
 
 def productos(request):
-    return render(request, "core/productos.html")
+    # Consulta todos los productos desde el modelo Producto
+    productos = Producto.objects.all()
+    return render(request, 'core/productos.html', {"productos": productos})
 
 
 def perfil(request):
@@ -204,8 +208,44 @@ def perfil(request):
 
 
 def servicios(request):
-    return render(request, "core/servicios.html")
+    # Consulta todos los servicios desde el modelo Servicio
+    servicios = Servicio.objects.all()
+
+    return render(request, 'core/servicios.html', {"servicios": servicios})
 
 
 def pedidos(request):
     return render(request, "core/pedidos.html")
+
+def generar_informe(request):
+    # Lógica para obtener datos de productos, servicios y cuentas
+    productos = Producto.objects.all()
+    servicios = Servicio.objects.all()
+    cuentas = Cuenta_Empleado.objects.all()
+
+    # Crear un libro de Excel
+    wb = Workbook()
+
+    # Crear hojas para productos, servicios y cuentas
+    ws_productos = wb.create_sheet(title="Productos")
+    ws_servicios = wb.create_sheet(title="Servicios")
+    ws_cuentas = wb.create_sheet(title="Cuentas")
+
+    # Escribir datos en las hojas
+    for producto in productos:
+        ws_productos.append([producto.Id_Producto, producto.Nombre_Producto, producto.stock_Producto, producto.descripcion_Producto, producto.Precio_Producto, producto.Categoria_Producto, producto.Marca_Producto, producto.Proveedor_Producto])
+
+    for servicio in servicios:
+        ws_servicios.append([servicio.Id_Servicio, servicio.Nombre_Servicio, servicio.Tipo_Servicio, servicio.Precio_Servicio, servicio.Personal_cargo])
+
+    for cuenta in cuentas:
+        ws_cuentas.append([cuenta.Id_Empleado, cuenta.Primer_Nombre, cuenta.Segundo_Nombre, cuenta.Primer_Apellido, cuenta.Segundo_Apellido, cuenta.Direccion, cuenta.Edad, cuenta.Cargo])
+
+    # Crear una respuesta de Django para el archivo Excel
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename=informe.xlsx'
+
+    # Guardar el libro de Excel en la respuesta
+    wb.save(response)
+
+    return response
