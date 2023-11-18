@@ -3,6 +3,7 @@ from django.db import models
 
 # Create your models here.
 class Producto(models.Model):
+    
     Id_Producto = models.CharField(primary_key=True, max_length=7)
     Nombre_Producto = models.CharField(max_length=30)
     stock_Producto = models.IntegerField()
@@ -14,6 +15,8 @@ class Producto(models.Model):
 
     def __str__(self):
         return self.Nombre_Producto
+
+
 
 
 class Servicio(models.Model):

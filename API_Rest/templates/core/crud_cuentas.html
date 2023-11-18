@@ -23,9 +23,9 @@
 
                         <div class="card">
                             <div class="card-body" style="background-color: white;">
-                                <form action="/crud_cuentas/" method="POST">{% csrf_token %}
+                                <form action="/registrarEmpleado/" method="POST">{% csrf_token %}
                                     <div class="form-group">
-                                        <input type="text" id="txtId_Empleado" name="txtId_Empleado" class="form-control" placeholder="Id_Producto" minlength="1" maxlength="7" required>
+                                        <input type="text" id="txtId_Empleado" name="txtId_Empleado" class="form-control" placeholder="Id_empleado" minlength="1" maxlength="7" required>
                                         <br>
                                         <input type="text" id="txtPrimer_nombre_Empleado" name="txtPrimer_nombre_Empleado" class="form-control" placeholder="Primer_nombre_Empleado" minlength="4"  maxlength="30" required>
                                         <br>
@@ -75,18 +75,19 @@
                                 </thead>
                                 <tbody>
                                     {% for p in cuenta_empleado %}
-                                    <tr>
-                                        <td>{{forloop.counter}}</td>
-                                        <td>{{p.Id_Empleado}}</td>
-                                        <td>{{p.Primer_Nombre}}</td>
-                                        <td>{{p.Segundo_Nombre}}</td>
-                                        <td>{{p.Primer_Apellido}}</td>
-                                        <td>{{p.Segundo_Apellido}}</td>
-                                        <td>{{p.Direccion}}</td>
-                                        <td>{{p.Edad}}</td>
-                                        <td>{{p.PCargo}}</td>
-                                        
-                                    </tr>
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td>{{ p.Id_Empleado }}</td>
+                                            <td>{{ p.Primer_Nombre }}</td>
+                                            <td>{{ p.Segundo_Nombre }}</td>
+                                            <td>{{ p.Primer_Apellido }}</td>
+                                            <td>{{ p.Segundo_Apellido }}</td>
+                                            <td>{{ p.Direccion }}</td>
+                                            <td>{{ p.Edad }}</td>
+                                            <td>{{ p.Cargo }}</td>
+                                            <td><a href="" class="btn btn-info">Editar</a></td>
+                                            <td><a href="" class="btn btn-danger" id="btneliminar">Eliminar</a></td>
+                                        </tr>
                                     {% endfor %}
                                 </tbody>
                             </table>    

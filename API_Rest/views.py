@@ -1,6 +1,12 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import Producto, Servicio, Cuenta_Empleado
+from openpyxl import Workbook
+from django.http import HttpResponse
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from django.contrib.auth.hashers import check_password
+from .models import Cuenta_Empleado
 
 def productos(request):
     productos = Producto.objects.all()
@@ -10,7 +16,7 @@ def crud_productos(request):
     productos = Producto.objects.all()
     return render(request, "core/crud_productos.html", {"productos": productos})
 
-def crud_Empleados(request):
+def crud_empleados(request):
     cuenta_empleado = Cuenta_Empleado.objects.all()
     return render(request, "core/crud_cuentas.html", {"cuenta_empleado": cuenta_empleado})
 
@@ -188,11 +194,14 @@ def EditarServicios(request):
 
 
 def crud_cuentas(request):
-    return render(request, "core/crud_cuentas.html")
+    cuenta_empleado = Cuenta_Empleado.objects.all()
+    return render(request, "core/crud_cuentas.html", {"cuenta_empleado": cuenta_empleado})
 
 
 def productos(request):
-    return render(request, "core/productos.html")
+    # Consulta todos los productos desde el modelo Producto
+    productos = Producto.objects.all()
+    return render(request, 'core/productos.html', {"productos": productos})
 
 
 def perfil(request):
@@ -200,8 +209,70 @@ def perfil(request):
 
 
 def servicios(request):
-    return render(request, "core/servicios.html")
+    # Consulta todos los servicios desde el modelo Servicio
+    servicios = Servicio.objects.all()
+
+    return render(request, 'core/servicios.html', {"servicios": servicios})
 
 
 def pedidos(request):
     return render(request, "core/pedidos.html")
+
+def generar_informe(request):
+    # Lógica para obtener datos de productos, servicios y cuentas
+    productos = Producto.objects.all()
+    servicios = Servicio.objects.all()
+    cuentas = Cuenta_Empleado.objects.all()
+
+    # Crear un libro de Excel
+    wb = Workbook()
+
+    # Crear hojas para productos, servicios y cuentas
+    ws_productos = wb.create_sheet(title="Productos")
+    ws_servicios = wb.create_sheet(title="Servicios")
+    ws_cuentas = wb.create_sheet(title="Cuentas")
+
+    # Escribir datos en las hojas
+    for producto in productos:
+        ws_productos.append([producto.Id_Producto, producto.Nombre_Producto, producto.stock_Producto, producto.descripcion_Producto, producto.Precio_Producto, producto.Categoria_Producto, producto.Marca_Producto, producto.Proveedor_Producto])
+
+    for servicio in servicios:
+        ws_servicios.append([servicio.Id_Servicio, servicio.Nombre_Servicio, servicio.Tipo_Servicio, servicio.Precio_Servicio, servicio.Personal_cargo])
+
+    for cuenta in cuentas:
+        ws_cuentas.append([cuenta.Id_Empleado, cuenta.Primer_Nombre, cuenta.Segundo_Nombre, cuenta.Primer_Apellido, cuenta.Segundo_Apellido, cuenta.Direccion, cuenta.Edad, cuenta.Cargo])
+
+    # Crear una respuesta de Django para el archivo Excel
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename=informe.xlsx'
+
+    # Guardar el libro de Excel en la respuesta
+    wb.save(response)
+
+    return response
+
+def login(request):
+    if request.method == "POST":
+        username = request.POST.get("txtIdEmp")
+        password = request.POST.get("txtPasswordEmp")
+
+        try:
+            # Buscar al usuario en la base de datos
+            empleado = Cuenta_Empleado.objects.get(Id_Empleado=username)
+
+            # Verificar la contraseña
+            if check_password(password, empleado.Contraseña):
+                if empleado.Cargo == "cliente":
+                    # Usuario es cliente, redirigir al index
+                    return redirect("index")
+                else:
+                    # Usuario no es cliente, mostrar mensaje de denegación
+                    messages.error(request, 'Acceso denegado para no clientes.')
+            else:
+                # Contraseña incorrecta
+                messages.error(request, 'Contraseña incorrecta.')
+        except Cuenta_Empleado.DoesNotExist:
+            # Usuario no encontrado
+            messages.error(request, 'Usuario no encontrado.')
+
+    return render(request, "core/login.html")

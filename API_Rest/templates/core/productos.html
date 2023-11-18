@@ -1,102 +1,69 @@
 <!DOCTYPE html>
-<html>
-  {% load static %}
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
-  </head>
-    <body>
-        <div id="cont_fondo"> 
-            <div class="container py-4">
-                <div class="row">
-                    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
-                        <h2>Gestion de Productos</h2>
-                        
-                        <div class="alert alert-dismissible alert-success">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            <strong class="text-dark"></strong>
-                        </div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviexpress</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="../../static/css/producto.css" rel="stylesheet">
+    <!-- Incluye los enlaces a los estilos y scripts de Ionic aquí -->
+</head>
 
-                        <div class="card">
-                            <div class="card-body" style="background-color: white;">
-                                <form action="/registrarProductos/" method="POST">{% csrf_token %}
-                                    <div class="form-group">
-                                        <input type="text" id="txtId_Producto" name="txtId_Producto" class="form-control" placeholder="Id_Producto" minlength="1" maxlength="7" required>
-                                        <br>
-                                        <input type="text" id="txtNombre_Producto" name="txtNombre_Producto" class="form-control" placeholder="Nombre_Producto" minlength="4"  maxlength="30" required>
-                                        <br>
-                                        <input type="number" id="txtstock_Producto" name="txtstock_Producto" class="form-control" placeholder="stock_Producto" minlength="4" maxlength="10" required>
-                                        <br>
-                                        <input type="text" id="txtdescripcion_Producto" name="txtdescripcion_Producto" class="form-control" placeholder="descripcion_Producto" minlength="10" maxlength="100" required>
-                                        <br>
-                                        <input type="number" id="txtPrecio_Producto" name="txtPrecio_Producto" class="form-control" placeholder="Precio_Producto" minlength="4" maxlength="9" required>
-                                        <br>
-                                        <input type="text" id="txtCategoria_Producto" name="txtCategoria_Producto" class="form-control" placeholder="Categoria_Producto" minlength="8" maxlength="30" required>
-                                        <br>
-                                        <input type="text" id="txtMarca_Producto" name="txtMarca_Producto" class="form-control" placeholder="Marca_Producto" minlength="6" maxlength="30" required>
-                                        <br>
-                                        <input type="text" id="txtProveedor_Producto" name="txtProveedor_Producto" class="form-control" placeholder="Proveedor_Producto" minlength="10" maxlength="40" required>
-                                    </div>
-                                    <br>
-                                    <div class="row" style="margin-left: 50px; display: flex;">
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
-                                        </div>
-                                        <br>
-                                        
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
-                        <h1>Lista de Productos</h1>
-                        <div class="table-responsive py-2">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Id_Producto</th>
-                                        <th>Nombre_Producto</th>
-                                        <th>stock_Producto</th>
-                                        <th>descripcion_Producto</th>
-                                        <th>Precio_Producto</th>
-                                        <th>Categoria_Producto</th>
-                                        <th>Marca_Producto</th>
-                                        <th>Proveedor_Producto</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for p in productos %}
-                                    <tr>
-                                        <td>{{forloop.counter}}</td>
-                                        <td>{{p.Id_Producto}}</td>
-                                        <td>{{p.Nombre_Producto}}</td>
-                                        <td>{{p.stock_Producto}}</td>
-                                        <td>{{p.descripcion_Producto}}</td>
-                                        <td>{{p.Precio_Producto}}</td>
-                                        <td>{{p.Categoria_Producto}}</td>
-                                        <td>{{p.Marca_Producto}}</td>
-                                        <td>{{p.Proveedor_Producto}}</td>
-                                        <td><a href="/edicionProducto/{{p.Id_Producto}}" class="btn btn-info">Editar</a></td>
-                                        <td><a href="/eliminarProducto/{{p.Id_Producto}}" class="btn btn-danger" id="btneliminar">Eliminar</a></td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>    
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'index' %}">Serviexpress</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'productos' %}">productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'servicios' %}">servicios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'pedidos' %}">pedidos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'perfil' %}">perfil</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="productos">
+        
+        <div class="productos">
+            {% for producto in productos %}
+                <div class="card{{ forloop.counter }}">
+                    <div class="card" style="width: 18rem;">
+                        
+                        <div class="card-body">
+                            <h5 class="card-title">{{ producto.Nombre_Producto }}</h5>
+                            <p class="card-text">{{ producto.descripcion_Producto }}</p>
+                            <p class="card-text">${{ producto.Precio_Producto }}</p>
+                            <p class="card-text">marca: {{ producto.Marca_Producto }}</p>
+                            <a href="#" class="btn btn-primary">Comprar</a>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{% static 'js/registro.js' %}"></script>
+            {% endfor %}
+</div>
+</body>
+</html>
+
+
 </body>
 </html>

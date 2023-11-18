@@ -20,6 +20,8 @@ from .views import (
     EliminarServicio,
     edicionServicio,
     EditarServicios,
+    registrarEmpleado,
+    generar_informe,
 )
 
 urlpatterns = [
@@ -40,8 +42,10 @@ urlpatterns = [
     path("EditarServicios/", EditarServicios, name="EditarServicios"),
     path("crud_cuentas/", crud_cuentas, name="crud_cuentas"),
     path("registro/", registro, name="registro"),
+    path("registrarEmpleado/", registrarEmpleado, name="registrarEmpleado"),
     path("productos/", productos, name="productos"),
     path("perfil/", perfil, name="perfil"),
     path("servicios/", servicios, name="servicios"),
     path("pedidos/", pedidos, name="pedidos"),
+    path('generar_informe/', generar_informe, name='generar_informe'),
 ]
