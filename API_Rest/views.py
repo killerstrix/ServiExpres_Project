@@ -20,36 +20,41 @@ def crud_empleados(request):
     cuenta_empleado = Cuenta_Empleado.objects.all()
     return render(request, "core/crud_cuentas.html", {"cuenta_empleado": cuenta_empleado})
 
-def registrarEmpleado(request):
-    Id_Empleado = request.POST["txtId_Empleado"]
-    Primer_Nombre = request.POST["txtPrimer_nombre_Empleado"]
-    Segundo_Nombre = request.POST["txtSegundo_nombre_Empleado"]
-    Primer_Apellido = request.POST["txtPrimer_Apellido"]
-    Segundo_Apellido = request.POST["txtSegundo_Apellido"]
-    Direccion = request.POST["txtDireccion"]
-    Edad = request.POST["txtEdad"]
-    Cargo = request.POST["txtCargo"]
-
-    cuenta_empleado = Cuenta_Empleado()
-    cuenta_empleado.Id_Empleado = Id_Empleado
-    cuenta_empleado.Primer_Nombre = Primer_Nombre
-    cuenta_empleado.Segundo_Nombre = Segundo_Nombre
-    cuenta_empleado.Primer_Apellido = Primer_Apellido
-    cuenta_empleado.Segundo_Apellido = Segundo_Apellido
-    cuenta_empleado.Direccion = Direccion
-    cuenta_empleado.Edad = Edad 
-    cuenta_empleado.Cargo = Cargo 
-
-    cuenta_empleado.save()
-
-    return redirect(reverse("crud_cuentas"))
 def productos(request):
     # Consulta todos los productos desde el modelo Producto
     productos = Producto.objects.all()
 
     return render(request, 'core/productos.html', {"productos": productos})
 
-# Create your views her.
+
+def crud_cuentas(request):
+    cuenta_empleado = Cuenta_Empleado.objects.all()
+    return render(request, "core/crud_cuentas.html", {"cuenta_empleado": cuenta_empleado})
+
+
+def productos(request):
+    # Consulta todos los productos desde el modelo Producto
+    productos = Producto.objects.all()
+    return render(request, 'core/productos.html', {"productos": productos})
+
+
+def perfil(request):
+    return render(request, "core/perfil.html")
+
+
+def servicios(request):
+    # Consulta todos los servicios desde el modelo Servicio
+    servicios = Servicio.objects.all()
+
+    return render(request, 'core/servicios.html', {"servicios": servicios})
+
+
+def pedidos(request):
+    return render(request, "core/pedidos.html")
+
+
+
+
 def login(request):
     return render(request, "core/login.html")
 
@@ -74,11 +79,37 @@ def index(request):
     return render(request, "core/index.html")
 
 
-
+def Generar_informes(request):
+    return render(request, "core/Generar_Informes.html")
 
 def crud_Servicios(request):
     servicios = Servicio.objects.all()
     return render(request, "core/crud_Servicios.html", {"servicios": servicios})
+
+
+def registrarEmpleado(request):
+    Id_Empleado = request.POST["txtId_Empleado"]
+    Primer_Nombre = request.POST["txtPrimer_nombre_Empleado"]
+    Segundo_Nombre = request.POST["txtSegundo_nombre_Empleado"]
+    Primer_Apellido = request.POST["txtPrimer_Apellido"]
+    Segundo_Apellido = request.POST["txtSegundo_Apellido"]
+    Direccion = request.POST["txtDireccion"]
+    Edad = request.POST["txtEdad"]
+    Cargo = request.POST["txtCargo"]
+
+    cuenta_empleado = Cuenta_Empleado()
+    cuenta_empleado.Id_Empleado = Id_Empleado
+    cuenta_empleado.Primer_Nombre = Primer_Nombre
+    cuenta_empleado.Segundo_Nombre = Segundo_Nombre
+    cuenta_empleado.Primer_Apellido = Primer_Apellido
+    cuenta_empleado.Segundo_Apellido = Segundo_Apellido
+    cuenta_empleado.Direccion = Direccion
+    cuenta_empleado.Edad = Edad 
+    cuenta_empleado.Cargo = Cargo 
+
+    cuenta_empleado.save()
+
+    return redirect(reverse("crud_cuentas"))
 
 
 def registrarProductos(request):
@@ -193,30 +224,6 @@ def EditarServicios(request):
     return redirect(reverse("crud_Servicios"))
 
 
-def crud_cuentas(request):
-    cuenta_empleado = Cuenta_Empleado.objects.all()
-    return render(request, "core/crud_cuentas.html", {"cuenta_empleado": cuenta_empleado})
-
-
-def productos(request):
-    # Consulta todos los productos desde el modelo Producto
-    productos = Producto.objects.all()
-    return render(request, 'core/productos.html', {"productos": productos})
-
-
-def perfil(request):
-    return render(request, "core/perfil.html")
-
-
-def servicios(request):
-    # Consulta todos los servicios desde el modelo Servicio
-    servicios = Servicio.objects.all()
-
-    return render(request, 'core/servicios.html', {"servicios": servicios})
-
-
-def pedidos(request):
-    return render(request, "core/pedidos.html")
 
 def generar_informe(request):
     # Lógica para obtener datos de productos, servicios y cuentas
@@ -248,8 +255,10 @@ def generar_informe(request):
 
     # Guardar el libro de Excel en la respuesta
     wb.save(response)
-
+    
+    
     return response
+
 
 def login(request):
     if request.method == "POST":
