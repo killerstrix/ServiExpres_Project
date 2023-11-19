@@ -86,6 +86,11 @@ def crud_Servicios(request):
     servicios = Servicio.objects.all()
     return render(request, "core/crud_Servicios.html", {"servicios": servicios})
 
+def EliminarCuenta(request, Id_Empleado):
+    cuenta = Cuenta_Empleado.objects.get(Id_Empleado=Id_Empleado)
+    cuenta.delete()
+
+    return redirect(reverse("crud_cuentas"))
 
 def registrarEmpleado(request):
     Id_Empleado = request.POST["txtId_Empleado"]

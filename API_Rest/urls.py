@@ -23,6 +23,7 @@ from .views import (
     registrarEmpleado,
     generar_informe,
     Generar_informes,
+    EliminarCuenta,
 )
 
 urlpatterns = [
@@ -51,4 +52,5 @@ urlpatterns = [
     path('generar_informe/', generar_informe, name='generar_informe'),
     path('generar_informe/', generar_informe, name='generar_informe'),
     path('Generar_informes/', Generar_informes, name='Generar_informes'),
+    path("EliminarCuenta/<Id_Empleado>", EliminarCuenta, name="EliminarCuenta"),
 ]
