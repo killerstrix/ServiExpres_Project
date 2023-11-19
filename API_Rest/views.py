@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from .models import Producto, Servicio, Cuenta_Empleado
+from .models import Producto, Servicio, Cuenta_Empleado,Cliente
 from openpyxl import Workbook
 from django.http import HttpResponse
 from django.contrib import messages
@@ -8,6 +8,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import check_password
 from .models import Cuenta_Empleado
 from django.contrib.auth.hashers import make_password
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+from django.core.serializers import serialize
 
 def productos(request):
     productos = Producto.objects.all()
@@ -21,22 +24,13 @@ def crud_empleados(request):
     cuenta_empleado = Cuenta_Empleado.objects.all()
     return render(request, "core/crud_cuentas.html", {"cuenta_empleado": cuenta_empleado})
 
-def productos(request):
-    # Consulta todos los productos desde el modelo Producto
-    productos = Producto.objects.all()
-
-    return render(request, 'core/productos.html', {"productos": productos})
 
 
 def crud_cuentas(request):
     cuenta_empleado = Cuenta_Empleado.objects.all()
+    cliente = Cliente.objects.all()
     return render(request, "core/crud_cuentas.html", {"cuenta_empleado": cuenta_empleado})
 
-
-def productos(request):
-    # Consulta todos los productos desde el modelo Producto
-    productos = Producto.objects.all()
-    return render(request, 'core/productos.html', {"productos": productos})
 
 
 def perfil(request):
@@ -54,10 +48,10 @@ def pedidos(request):
     return render(request, "core/pedidos.html")
 
 
-
-
 def login(request):
+    
     return render(request, "core/login.html")
+
 
 
 def log_out(request):
@@ -65,7 +59,8 @@ def log_out(request):
 
 
 def registro(request):
-    return render(request, "core/registro.html")
+    clientes = Cliente.objects.all()
+    return render(request, "core/registro.html", {"clientes": clientes})
 
 
 def LoginEmpleados(request):
@@ -75,6 +70,14 @@ def LoginEmpleados(request):
 def MenuEmpleados(request):
     return render(request, "core/MenuEmpleados.html")
 
+def MenuAdmin(request):
+    return render(request, "core/MenuAdmin.html")
+
+def Validar_Pago(request):     
+    return render(request, "core/Validar_Pago.html")  
+
+def detalle_venta(request):     
+    return render(request, "core/detalle_venta.html")
 
 def index(request):
     return render(request, "core/index.html")
@@ -108,8 +111,6 @@ def registrarEmpleado(request):
         usuario = Primer_Nombre[:2].lower() + '.' + Segundo_Nombre[-2:].lower() + '_' +Edad
         contrasena = usuario  # Establecer la contraseña inicial como el usuario
 
-        # Hashear la contraseña antes de guardarla en la base de datos
-        #hashed_password = make_password(contrasena)
 
         cuenta_empleado = Cuenta_Empleado.objects.create(
             Id_Empleado=Id_Empleado,
@@ -127,7 +128,44 @@ def registrarEmpleado(request):
         messages.success(request, 'Cuenta de empleado registrada exitosamente.')
         return redirect(reverse('crud_cuentas'))
 
-     
+
+def registrarCliente(request):
+    if request.method == 'POST':
+        print("Entrando al bloque POST")  # Mensaje de consola
+
+        nombre_usuario = request.POST.get("txtNombre_Usuario")
+        contrasena = request.POST.get("txtContrasena")
+        correo_electronico = request.POST.get("txtCorreoC")
+        edad = request.POST.get("txtAge")
+        comuna = request.POST.get("ComunaC")
+        numero_telefonico = request.POST.get("txtNumberTelephone")
+        genero = request.POST.get("radioMasculino") or request.POST.get("radioFemenino") or request.POST.get("radioOtros")
+
+        print("Datos del formulario:")
+        print(f"Nombre de usuario: {nombre_usuario}")
+        print(f"Contraseña: {contrasena}")
+        print(f"Correo electrónico: {correo_electronico}")
+        print(f"Edad: {edad}")
+        print(f"Comuna: {comuna}")
+        print(f"Número telefónico: {numero_telefonico}")
+        print(f"Género: {genero}")
+
+        # Crear un objeto Cliente y guardarlo en la base de datos
+        cliente = Cliente.objects.create(
+            Nombre_Usuario=nombre_usuario,
+            Contrasena=contrasena,
+            Correo_Electronico=correo_electronico,
+            Edad=edad,
+            Comuna=comuna,
+            Numero_Telefonico=numero_telefonico,
+            Genero=genero
+        )
+        cliente.save()
+        messages.success(request, 'Cuenta de cliente registrada exitosamente.')
+        print("Cliente registrado exitosamente")  # Mensaje de consola
+        return redirect(reverse('registro'))
+
+    return render(request, 'core/registro.html')
 
 
 def registrarProductos(request):
@@ -277,29 +315,6 @@ def generar_informe(request):
     
     return response
 
-
-def login(request):
-    if request.method == "POST":
-        username = request.POST.get("txtIdEmp")
-        password = request.POST.get("txtPasswordEmp")
-
-        try:
-            # Buscar al usuario en la base de datos
-            empleado = Cuenta_Empleado.objects.get(Id_Empleado=username)
-
-            # Verificar la contraseña
-            if check_password(password, empleado.Contraseña):
-                if empleado.Cargo == "cliente":
-                    # Usuario es cliente, redirigir al index
-                    return redirect("index")
-                else:
-                    # Usuario no es cliente, mostrar mensaje de denegación
-                    messages.error(request, 'Acceso denegado para no clientes.')
-            else:
-                # Contraseña incorrecta
-                messages.error(request, 'Contraseña incorrecta.')
-        except Cuenta_Empleado.DoesNotExist:
-            # Usuario no encontrado
-            messages.error(request, 'Usuario no encontrado.')
-
-    return render(request, "core/login.html")
+def loginEmpleado(request):
+    cuentas_empleados = serialize('json', Cuenta_Empleado.objects.all())
+    return render(request, 'core/LoginEmpleados.html', {'cuentas_empleados': cuentas_empleados})

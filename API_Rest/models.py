@@ -44,3 +44,16 @@ class Cuenta_Empleado(models.Model):
 
     def __str__(self):
         return self.Id_Empleado
+
+class Cliente(models.Model):
+    id = models.AutoField(primary_key=True)
+    Nombre_Usuario = models.CharField(max_length=30)
+    Contrasena = models.CharField(max_length=60)
+    Correo_Electronico = models.EmailField()
+    Edad = models.IntegerField()
+    Comuna = models.CharField(max_length=30)
+    Numero_Telefonico = models.CharField(max_length=15)
+    Genero = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.Nombre_Usuario

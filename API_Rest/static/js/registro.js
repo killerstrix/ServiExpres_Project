@@ -61,9 +61,6 @@ function validarR() {
         html += "-Debe seleccionar una comuna<br>"
     }
 
-    if (NumTel === ""  ||parseInt(NumTel) > 9999999 || parseInt(NumTel) < 1000000000) {
-        html += "-El número telefónico debe tener 8 o 9 dígitos<br>";
-    }
 
     if (!radioMasculino.checked && !RadioFemenino.checked && !RadioOtros.checked) {
         html += "-Debe seleccionar un genero<br>";

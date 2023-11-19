@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+    {% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/detalle_venta.css' %}" rel="stylesheet">
     <title>Serviexpress</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link href="../../static/css/producto.css" rel="stylesheet">
-    <!-- Incluye los enlaces a los estilos y scripts de Ionic aquí -->
+    
+    
 </head>
-
 <body>
     <header>
+       
+    
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% url 'index' %}">Serviexpress</a>
@@ -43,27 +46,36 @@
             </div>
         </nav>
     </header>
-    <div class="productos">
-        
-        <div class="productos">
-            {% for producto in productos %}
-                <div class="card{{ forloop.counter }}">
-                    <div class="card" style="width: 18rem;">
-                        
-                        <div class="card-body">
-                            <h5 class="card-title">{{ producto.Nombre_Producto }}</h5>
-                            <p class="card-text">{{ producto.descripcion_Producto }}</p>
-                            <p class="card-text">${{ producto.Precio_Producto }}</p>
-                            <p class="card-text">marca: {{ producto.Marca_Producto }}</p>
-                            <a href="../Validar_Pago" class="btn btn-primary">Comprar</a>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-</div>
-</body>
-</html>
+    <main>   
+        <div class="block_general">   
+            <div class="block_title">   
+                <h3 style="font-weight: bold;">Detalle Venta</h3> 
+                <br>
+                <h5 style="font-weight: bold;">Orden de pedido:</h5> 
+            </div>  
+            <div class="block_pago">   
+                <h3 style="font-weight: bold;">Total a Pagar:</h3> 
+            </div>   
+        </div>  
+        <div class="block_detalle">   
+            <div class="block_detalle1">   
+                <h3 style="font-weight: bold; margin-left:20px; margin-top:20px">Resumen de compra</h3> 
+                <br>
+                <br>
+                <h5 style="margin-left:20px;">Id del pedido:</h5>
+                <h5 style="margin-left:20px;">Fecha del pedido:</h5>
+                <div class="linea"></div>
+                <br>
+                <h5 style="margin-left:20px;">Nombre del producto/Servicio:</h5>
+                <h5 style="margin-left:20px;">Tipo de venta:</h5>
+                <h5 style="margin-left:20px;">Cantidad:</h5>
+                <h5 style="margin-left:20px;">Fecha de reserva(Opcional):</h5>
+                <h5 style="margin-left:20px;">Tipo de servicio(Opcional):</h5>
 
-
+            </div>
+        </div>
+    </main>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </body>
 </html>

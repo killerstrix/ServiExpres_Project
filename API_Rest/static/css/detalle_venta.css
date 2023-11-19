@@ -1,0 +1,50 @@
+.block_general {
+    width: 700px;
+    height: 200px;
+    border: 1px solid rgb(212, 212, 212);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3%;
+    display: flex;
+    background-color: #fafafa;
+    flex-direction: row;
+    justify-content: space-between;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .block_title {
+    font-family: Open Sans, Roboto, Arial, Helvetica, sans-serif, SimSun;
+    width: 400px;
+    height: 200px;
+  }
+  
+  .block_pago {
+    width: 300px;
+    height: 200px;
+  }
+
+  .block_detalle {
+    width: 700px;
+    height: 550px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fafafa;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .block_detalle1{
+    background-color: white;
+    border: 1px solid rgb(212, 212, 212);
+    width: 650px;
+    height: 520px;
+    margin-top: 10px;
+    margin-left: 25px;
+    border-radius: 15px;
+  }
+  
+  .linea{
+    background-color:#dfdfdf;
+    width: 650px;
+    height: 2px;
+  }
+  

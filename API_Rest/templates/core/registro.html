@@ -29,6 +29,8 @@
                         <h3 style="font-family: Geneva, Verdana, sans-serif; text-align: center; font-weight: bold; margin-top: 40px">Formulario Creación de cuenta</h3>
                         <p style="font-family: Geneva, Verdana, sans-serif; text-align: center;">Ingrese los datos para crear su cuenta</p>
                         <br>
+                        <form action="{% url 'registrarCliente' %}" method="POST">
+                            {% csrf_token %}
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-5" style="margin-left: 25px">
@@ -36,6 +38,7 @@
                                     <input style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.75); border: 2px solid black; placeholder-color: #ffffff;"
                                         type="text"
                                         fill="outline"
+                                        name="txtNombre_Usuario"
                                         placeholder="Ingrese el nombre de usuario"
                                         label-placement="floating"
                                         class="form-control"
@@ -47,6 +50,7 @@
                                     <input style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.75); border: 2px solid black; placeholder-color: #ffffff;"
                                         type="password"
                                         fill="outline"
+                                        name="txtContrasena"
                                         placeholder="Ingrese la contraseña"
                                         class="form-control"
                                         id="txtPassword"
@@ -61,6 +65,7 @@
                                       type="email"
                                       fill="outline"
                                       placeholder="Gmail"
+                                      name="txtCorreoC"
                                       class="form-control"
                                       id="txtCorreoC"
                                       required
@@ -73,6 +78,7 @@
                                         fill="outline"
                                         placeholder="Ingrese la edad"
                                         class="form-control"
+                                        name="txtAge"
                                         id="txtAge"
                                         required />
                                 </div>
@@ -80,7 +86,7 @@
                             <br>
                             <div class="row">
                                 <div class="col-5" style="margin-left: 25px; margin-top:27px;">
-                                    <select style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.75); border: 2px solid black; placeholder-color: #ffffff;" class="form-select" id="ComunaC">
+                                    <select style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.75); border: 2px solid black; placeholder-color: #ffffff;" name="ComunaC" class="form-select" id="ComunaC">
                                     <optgroup label="Region Metropolitana">
                                         <option value="0">Seleccione una comuna</option>
                                         <option value="1">Recoleta</option>
@@ -101,7 +107,8 @@
                                     <label>Numero Telefonico</label>
                                     <input style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.75); border: 2px solid black; placeholder-color: #ffffff;"
                                         type="number"
-                                        fill="outline"
+                                        
+                                        name="txtNumberTelephone"
                                         placeholder="Ingrese el Numero Telefonico"
                                         class="form-control"
                                         id="txtNumberTelephone"
@@ -113,34 +120,19 @@
                                 <label style="font-family: Geneva, Verdana, sans-serif; text-align: center; font-weight: bold;">Seleccione el genero:</label>
                                 <br />
                                 <label class="form-check-label">Masculino</label>
-                                <input
-                                type="radio"
-                                class="form-check-input"
-                                name="radioMasculino"
-                                id="rbtMasculino"
-                                />
+                                <input type="radio" class="form-check-input" name="radioMasculino" id="rbtMasculino" />
                                 <br>
                                 <label class="form-check-label">Femenino</label>
-                                <input
-                                type="radio"
-                                class="form-check-input"
-                                name="radioFemenino"
-                                id="rbtFemenino"
-                                />
+                                <input type="radio" class="form-check-input" name="radioFemenino" id="rbtFemenino" />
                                 <br>
                                 <label class="form-check-label">Otros</label>
-                                <input
-                                type="radio"
-                                class="form-check-input"
-                                name="radioOtros"
-                                id="rbtOtros"
-                                />
+                                <input type="radio" class="form-check-input" name="radioOtros" id="rbtOtros" />
                             </div>
                             <br>
                             <input style="margin-left: 22px" type="radio" id="ValTerms" /><span>Aceptar los</span><a href=""> términos y condiciones</a>
                             <br>
                             <br>
-                        </div>
+                        
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
@@ -149,10 +141,12 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <button class="botoncre" type="submit" class="btn btn-primary" id="btnCrearCuenta" value="">Crear cuenta</button>
+                                    <button type="submit" class="botoncre btn btn-primary" id="btnCrearCuenta">Crear cuenta</button>
                                 </div>
                             </div>
-                        </div>                          
+                        </div>    
+                    </form>
+                        
                     </div>
                 </div>
             </div>

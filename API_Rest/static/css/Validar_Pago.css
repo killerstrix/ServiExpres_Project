@@ -1,0 +1,151 @@
+.fondo {
+    margin: 0;
+    overscroll-behavior: none;
+    background-color:  #fafafa;
+    font-family: Roboto,Arial,Helvetica,sans-serif;
+    min-height: 100%;
+    position: relative;
+  }
+  
+  .Formblocks {
+    width: 100%;
+    height: 50px;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .header__brand {
+    display: block;
+    margin-left: 22%;
+    margin-top: 1%;
+  }
+  
+  .block_general {
+    width: 994px;
+    height: 550px;
+    border: 1px solid rgb(212, 212, 212);
+    background-color: white;
+    border-radius: 15px;
+    margin-left: 22%;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .block_Opcion_Pago {
+    width: 497px;
+    height: 550px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+  
+  .Letra {
+    -webkit-box-flex: 1;
+    flex: 1;
+    max-width: 50%;
+    font-family: Roboto,Arial,Helvetica,sans-serif;
+    margin-top: 10%;
+    margin-left: 20%;
+  }
+  
+  .Letra2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    margin-left: 20%;
+  }
+
+  .buttons {
+    width: 352px;
+    height: 160px;
+    
+    margin-left: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .button-1, .button-2 {
+    width: 326px;
+    height: 60px;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .button-1:hover, .button-2:hover {
+    border: 2px solid #6b196b;
+  }
+  
+  .button-1:active, .button-2:active {
+    border-color: #00c4b3;
+  }
+
+.btnSalir{
+    width: 326px;
+    height: 60px;
+    background-color: white;
+    color: rgb(44, 44, 228);
+    margin-left: 20%;
+    border: 0px solid white;
+
+}
+  
+  .block_Metodo_Pago {
+    width: 497px;
+    height: 550px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+  
+  .Letra3 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    margin-left: 20%;
+    margin-top: 10%;
+  }
+
+  .Letra4 {
+    font-family: 'Roboto', sans-serif;
+    margin-left: 13%;
+  }
+
+  .design_input{
+    width: 300px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 2px;
+  }
+
+  .BotonContinuar{
+    width: 300px;
+    height: 50px;
+    border-radius: 2px;
+    background-color: #6b196b;
+    margin-left: 13%;
+    border: 0px solid #6b196b;
+  }
+
+  .BotonContinuar:hover {
+    background-color:  #da34da;
+  }
+  
+.letraSpan{
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: .25px;
+    color: #707382;
+}
+
+
+  
+  
+  
+  
+  
+  
+  
