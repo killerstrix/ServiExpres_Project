@@ -25,6 +25,8 @@ function validarR() {
     var UserName = $("#txtUserName").val();
     var Password = $("#txtPassword").val();
     var correo = $("#txtCorreoC").val();
+    var Edad = $("#txtAge").val();
+    var Comuna = $("ComunaC").val();
     var NumTel = $("#txtNumberTelephone").val();
     var radioMasculino = document.querySelector("#rbtMasculino");
     var RadioFemenino = document.querySelector("#rbtFemenino");
@@ -45,12 +47,21 @@ function validarR() {
 
     if (correo === "") {
         html += "-Debe ingresar el correo electrónico<br>";
-    }else if(correo === "" || correo.indexOf("@") === -1) {
+    }else if(correo === ""  ||correo.indexOf("@") === -1) {
         html += "-Debe ingresar el caracter '@' en el correo electronico<br>";
     }
-    
 
-    if (NumTel === "" || parseInt(NumTel) > 99999999 || parseInt(NumTel) < 1000000) {
+    if (Edad === "") {
+        html += "-Debe ingresar la edad<br>"
+    }else if(parseInt(Edad) > 18) {
+        html += "-Debe ser mayor de 18 años para acceder a la pagina<br>";
+    }
+
+    if(Comuna ==="0") {
+        html += "-Debe seleccionar una comuna<br>"
+    }
+
+    if (NumTel === ""  ||parseInt(NumTel) > 9999999 || parseInt(NumTel) < 1000000000) {
         html += "-El número telefónico debe tener 8 o 9 dígitos<br>";
     }
 
