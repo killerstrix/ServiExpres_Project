@@ -39,6 +39,8 @@ class Cuenta_Empleado(models.Model):
     Direccion = models.CharField(max_length=20)
     Edad = models.IntegerField()
     Cargo = models.CharField(max_length=20)
+    Usuario = models.CharField(max_length=10, unique=True)
+    Contrasena = models.CharField(max_length=60)
 
     def __str__(self):
         return self.Id_Empleado

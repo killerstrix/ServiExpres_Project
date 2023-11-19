@@ -27,20 +27,21 @@
                                     <div class="form-group">
                                         <input type="text" id="txtId_Empleado" name="txtId_Empleado" class="form-control" placeholder="Id_empleado" minlength="1" maxlength="7" required>
                                         <br>
-                                        <input type="text" id="txtPrimer_nombre_Empleado" name="txtPrimer_nombre_Empleado" class="form-control" placeholder="Primer_nombre_Empleado" minlength="4"  maxlength="30" required>
+                                        <input type="text" id="txtPrimer_nombre_Empleado" name="txtPrimer_nombre_Empleado" class="form-control" placeholder="Primer_nombre_Empleado" minlength="3"  maxlength="30" required>
                                         <br>
-                                        <input type="text" id="txtSegundo_nombre_Empleado" name="txtSegundo_nombre_Empleado" class="form-control" placeholder="Segundo_nombre_Empleado" minlength="4"  maxlength="30" required>
+                                        <input type="text" id="txtSegundo_nombre_Empleado" name="txtSegundo_nombre_Empleado" class="form-control" placeholder="Segundo_nombre_Empleado" minlength="3"  maxlength="30" required>
                                         <br>
                                         <input type="text" id="txtPrimer_Apellido" name="txtPrimer_Apellido" class="form-control" placeholder="Primer_Apellido" minlength="4"  maxlength="30" required>
                                         <br>
                                         <input type="text" id="txtSegundo_Apellido" name="txtSegundo_Apellido" class="form-control" placeholder="Segundo_Apellido" minlength="4"  maxlength="30" required>
                                         <br>
-                                        <input type="text" id="txtDireccion" name="txtDireccion" class="form-control" placeholder="Direccion" minlength="4" maxlength="10" required>
+                                        <input type="text" id="txtDireccion" name="txtDireccion" class="form-control" placeholder="Direccion" minlength="10" maxlength="20" required>
                                         <br>
-                                        <input type="number" id="txtEdad" name="txtEdad" class="form-control" placeholder="Edad" minlength="10" maxlength="100" required>
+                                        <input type="number" id="txtEdad" name="txtEdad" class="form-control" placeholder="Edad" minlength="2" maxlength="2" required>
                                         <br>
                                         <input type="text" id="txtCargo" name="txtCargo" class="form-control" placeholder="Cargo" minlength="4" maxlength="9" required>
                                         <br>
+                                        
                                     </div>
                                     <br>
                                     <div class="row" style="margin-left: 50px; display: flex;">
@@ -71,6 +72,7 @@
                                         <th>Direccion</th>
                                         <th>Edad</th>
                                         <th>Cargo</th>
+                                        <th>Contrasena</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -85,6 +87,7 @@
                                             <td>{{ p.Direccion }}</td>
                                             <td>{{ p.Edad }}</td>
                                             <td>{{ p.Cargo }}</td>
+                                            <td>{{ p.Contrasena }}</td>
                                             <td><a href="" class="btn btn-info">Editar</a></td>
                                             <td><a href="/EliminarCuenta/{{p.Id_Empleado}}" class="btn btn-danger btnEliminacion" id="btneliminar">Eliminar</a></td>
                                         </tr>

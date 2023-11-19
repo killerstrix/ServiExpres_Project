@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import check_password
 from .models import Cuenta_Empleado
+from django.contrib.auth.hashers import make_password
 
 def productos(request):
     productos = Producto.objects.all()
@@ -93,28 +94,40 @@ def EliminarCuenta(request, Id_Empleado):
     return redirect(reverse("crud_cuentas"))
 
 def registrarEmpleado(request):
-    Id_Empleado = request.POST["txtId_Empleado"]
-    Primer_Nombre = request.POST["txtPrimer_nombre_Empleado"]
-    Segundo_Nombre = request.POST["txtSegundo_nombre_Empleado"]
-    Primer_Apellido = request.POST["txtPrimer_Apellido"]
-    Segundo_Apellido = request.POST["txtSegundo_Apellido"]
-    Direccion = request.POST["txtDireccion"]
-    Edad = request.POST["txtEdad"]
-    Cargo = request.POST["txtCargo"]
+    if request.method == 'POST':
+        Id_Empleado = request.POST["txtId_Empleado"]
+        Primer_Nombre = request.POST["txtPrimer_nombre_Empleado"]
+        Segundo_Nombre = request.POST["txtSegundo_nombre_Empleado"]
+        Primer_Apellido = request.POST["txtPrimer_Apellido"]
+        Segundo_Apellido = request.POST["txtSegundo_Apellido"]
+        Direccion = request.POST["txtDireccion"]
+        Edad = request.POST["txtEdad"]
+        Cargo = request.POST["txtCargo"]
 
-    cuenta_empleado = Cuenta_Empleado()
-    cuenta_empleado.Id_Empleado = Id_Empleado
-    cuenta_empleado.Primer_Nombre = Primer_Nombre
-    cuenta_empleado.Segundo_Nombre = Segundo_Nombre
-    cuenta_empleado.Primer_Apellido = Primer_Apellido
-    cuenta_empleado.Segundo_Apellido = Segundo_Apellido
-    cuenta_empleado.Direccion = Direccion
-    cuenta_empleado.Edad = Edad 
-    cuenta_empleado.Cargo = Cargo 
+        # Generar usuario y contraseña según las especificaciones
+        usuario = Primer_Nombre[:2].lower() + '.' + Segundo_Nombre[-2:].lower() + '_' +Edad
+        contrasena = usuario  # Establecer la contraseña inicial como el usuario
 
-    cuenta_empleado.save()
+        # Hashear la contraseña antes de guardarla en la base de datos
+        #hashed_password = make_password(contrasena)
 
-    return redirect(reverse("crud_cuentas"))
+        cuenta_empleado = Cuenta_Empleado.objects.create(
+            Id_Empleado=Id_Empleado,
+            Primer_Nombre=Primer_Nombre,
+            Segundo_Nombre=Segundo_Nombre,
+            Primer_Apellido=Primer_Apellido,
+            Segundo_Apellido=Segundo_Apellido,
+            Direccion=Direccion,
+            Edad=Edad,
+            Cargo=Cargo,
+            Usuario=usuario,
+            Contrasena=contrasena # Guardar la contraseña hasheada
+        )
+        cuenta_empleado.save()
+        messages.success(request, 'Cuenta de empleado registrada exitosamente.')
+        return redirect(reverse('crud_cuentas'))
+
+     
 
 
 def registrarProductos(request):
