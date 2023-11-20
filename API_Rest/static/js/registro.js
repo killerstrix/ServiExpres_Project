@@ -32,7 +32,7 @@ function validarR() {
     var RadioFemenino = document.querySelector("#rbtFemenino");
     var RadioOtros = document.querySelector("#rbtOtros");
     var radio = document.querySelector("#ValTerms");
-
+    var edadNumero = parseInt(Edad);
     if (UserName === "") {
         html += "-Debe ingresar el nombre de usuario<br>";
     } else if (!UserName.length > 7) {
@@ -51,9 +51,9 @@ function validarR() {
         html += "-Debe ingresar el caracter '@' en el correo electronico<br>";
     }
 
-    if (Edad === "") {
+    if (edadNumero === "") {
         html += "-Debe ingresar la edad<br>"
-    }else if(parseInt(Edad) > 18) {
+    }else if(!edadNumero > 18) {
         html += "-Debe ser mayor de 18 años para acceder a la pagina<br>";
     }
 
@@ -88,7 +88,7 @@ $(document).ready(function () {
             if (result.isConfirmed) {
                 Swal.fire('Seleccionaste cerrar sesión', 'Hasta luego!', 'success')
                 .then(function () {
-                    window.location.href = "/LoginEmpleados/";
+                    window.location.href = "/loginEmpleado/";
                 });
             } else if (result.isDenied) {
                 Swal.fire('Seleccionaste no cerrar sesión', '', 'error');

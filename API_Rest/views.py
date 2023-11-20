@@ -12,9 +12,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.core.serializers import serialize
 
-def productos(request):
-    productos = Producto.objects.all()
-    return render(request, "core/productos.html", {"productos": productos})
 
 def crud_productos(request):
     productos = Producto.objects.all()
@@ -25,32 +22,43 @@ def crud_empleados(request):
     return render(request, "core/crud_cuentas.html", {"cuenta_empleado": cuenta_empleado})
 
 
-
-def crud_cuentas(request):
-    cuenta_empleado = Cuenta_Empleado.objects.all()
-    cliente = Cliente.objects.all()
-    return render(request, "core/crud_cuentas.html", {"cuenta_empleado": cuenta_empleado})
-
-
-
-def perfil(request):
-    return render(request, "core/perfil.html")
-
+def index(request):
+    return render(request, "core/index.html")
 
 def servicios(request):
-    # Consulta todos los servicios desde el modelo Servicio
+    
     servicios = Servicio.objects.all()
 
     return render(request, 'core/servicios.html', {"servicios": servicios})
 
 
+def perfil(request):
+    return render(request, "core/perfil.html")
+
+def productos(request):
+    productos = Producto.objects.all()
+    return render(request, "core/productos.html", {"productos": productos})
+
+def Validar_Pago(request):     
+    return render(request, "core/Validar_Pago.html")  
+
+def detalle_venta(request):     
+    return render(request, "core/detalle_venta.html")
+
 def pedidos(request):
     return render(request, "core/pedidos.html")
-
 
 def login(request):
     
     return render(request, "core/login.html")
+
+def MenuEmpleados(request):
+    return render(request, "core/MenuEmpleados.html")
+
+def MenuAdmin(request):
+    return render(request, "core/MenuAdmin.html")
+
+
 
 
 
@@ -63,24 +71,6 @@ def registro(request):
     return render(request, "core/registro.html", {"clientes": clientes})
 
 
-def LoginEmpleados(request):
-    return render(request, "core/LoginEmpleados.html")
-
-
-def MenuEmpleados(request):
-    return render(request, "core/MenuEmpleados.html")
-
-def MenuAdmin(request):
-    return render(request, "core/MenuAdmin.html")
-
-def Validar_Pago(request):     
-    return render(request, "core/Validar_Pago.html")  
-
-def detalle_venta(request):     
-    return render(request, "core/detalle_venta.html")
-
-def index(request):
-    return render(request, "core/index.html")
 
 
 def Generar_informes(request):
@@ -89,6 +79,12 @@ def Generar_informes(request):
 def crud_Servicios(request):
     servicios = Servicio.objects.all()
     return render(request, "core/crud_Servicios.html", {"servicios": servicios})
+
+def crud_cuentas(request):
+    cuenta_empleado = Cuenta_Empleado.objects.all()
+    cliente = Cliente.objects.all()
+    return render(request, "core/crud_cuentas.html", {"cuenta_empleado": cuenta_empleado})
+
 
 def EliminarCuenta(request, Id_Empleado):
     cuenta = Cuenta_Empleado.objects.get(Id_Empleado=Id_Empleado)
@@ -168,6 +164,12 @@ def registrarCliente(request):
     return render(request, 'core/registro.html')
 
 
+def eliminarProducto(request, Id_Producto):
+    producto = Producto.objects.get(Id_Producto=Id_Producto)
+    producto.delete()
+
+    return redirect(reverse("crud_productos"))
+
 def registrarProductos(request):
     id_producto = request.POST["txtId_Producto"]
     nombre_producto = request.POST["txtNombre_Producto"]
@@ -191,50 +193,6 @@ def registrarProductos(request):
     producto.save()
 
     return redirect(reverse("crud_productos"))
-
-
-def registrarServicios(request):
-    id_servicio = request.POST["txtId_Servicio"]
-    nombre_servicio = request.POST["txtNombre_Servicio"]
-    tipo_servicio = request.POST["txtTipo_Servicio"]
-    precio_servicio = request.POST["txtPrecio_Servicio"]
-    personal_cargo = request.POST["txtPersonal_cargo"]
-
-    servicio = Servicio()
-    servicio.Id_Servicio = id_servicio
-    servicio.Nombre_Servicio = nombre_servicio
-    servicio.Tipo_Servicio = tipo_servicio
-    servicio.Precio_Servicio = precio_servicio
-    servicio.Personal_cargo = personal_cargo
-
-    servicio.save()
-
-    return redirect(reverse("crud_Servicios"))
-
-
-def eliminarProducto(request, Id_Producto):
-    producto = Producto.objects.get(Id_Producto=Id_Producto)
-    producto.delete()
-
-    return redirect(reverse("crud_productos"))
-
-
-def EliminarServicio(request, Id_Servicio):
-    servicio = Servicio.objects.get(Id_Servicio=Id_Servicio)
-    servicio.delete()
-
-    return redirect(reverse("crud_Servicios"))
-
-
-def edicionProducto(request, Id_Producto):
-    producto = Producto.objects.get(Id_Producto=Id_Producto)
-    return render(request, "core/edicionProducto.html", {"producto": producto})
-
-
-def edicionServicio(request, Id_Servicio):
-    servicio = Servicio.objects.get(Id_Servicio=Id_Servicio)
-    return render(request, "core/edicionServicio.html", {"servicio": servicio})
-
 
 def EditarProductos(request):
     id_producto = request.POST["txtId_Producto"]
@@ -260,6 +218,48 @@ def EditarProductos(request):
 
     return redirect(reverse("crud_productos"))
 
+
+
+
+def registrarServicios(request):
+    id_servicio = request.POST["txtId_Servicio"]
+    nombre_servicio = request.POST["txtNombre_Servicio"]
+    tipo_servicio = request.POST["txtTipo_Servicio"]
+    precio_servicio = request.POST["txtPrecio_Servicio"]
+    personal_cargo = request.POST["txtPersonal_cargo"]
+
+    servicio = Servicio()
+    servicio.Id_Servicio = id_servicio
+    servicio.Nombre_Servicio = nombre_servicio
+    servicio.Tipo_Servicio = tipo_servicio
+    servicio.Precio_Servicio = precio_servicio
+    servicio.Personal_cargo = personal_cargo
+
+    servicio.save()
+
+    return redirect(reverse("crud_Servicios"))
+
+
+def edicionServicio(request, Id_Servicio):
+    servicio = Servicio.objects.get(Id_Servicio=Id_Servicio)
+    return render(request, "core/edicionServicio.html", {"servicio": servicio})
+
+
+def EliminarServicio(request, Id_Servicio):
+    servicio = Servicio.objects.get(Id_Servicio=Id_Servicio)
+    servicio.delete()
+
+    return redirect(reverse("crud_Servicios"))
+
+
+
+
+
+
+
+def edicionProducto(request, Id_Producto):
+    producto = Producto.objects.get(Id_Producto=Id_Producto)
+    return render(request, "core/edicionProducto.html", {"producto": producto})
 
 def EditarServicios(request):
     id_servicio = request.POST["txtId_Servicio"]
@@ -318,3 +318,22 @@ def generar_informe(request):
 def loginEmpleado(request):
     cuentas_empleados = serialize('json', Cuenta_Empleado.objects.all())
     return render(request, 'core/LoginEmpleados.html', {'cuentas_empleados': cuentas_empleados})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def LoginEmpleados(request):
+    return render(request, "core/LoginEmpleados.html")
