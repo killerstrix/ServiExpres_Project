@@ -12,7 +12,7 @@ class Producto(models.Model):
     Categoria_Producto = models.CharField(max_length=30)
     Marca_Producto = models.CharField(max_length=30)
     Proveedor_Producto = models.CharField(max_length=40)
-
+    habilitado = models.BooleanField(default=True)
     def __str__(self):
         return self.Nombre_Producto
 

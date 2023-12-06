@@ -39,6 +39,23 @@ def productos(request):
     productos = Producto.objects.all()
     return render(request, "core/productos.html", {"productos": productos})
 
+def deshabilitar_producto(request, id_producto):
+    # Buscar el producto por su ID
+    producto = Producto.objects.get(pk=id_producto)
+
+    # Cambiar el estado de habilitado a False
+    producto.habilitado = False
+    producto.save()
+
+    # Redirigir a la página de productos
+    return redirect('productos')
+
+def habilitar_producto(request, Id_Producto):
+    producto = Producto.objects.get(Id_Producto=Id_Producto)
+    producto.habilitado = True
+    producto.save()
+    return redirect('crud_productos')
+
 def Validar_Pago(request):     
     return render(request, "core/Validar_Pago.html")  
 
@@ -127,8 +144,6 @@ def registrarEmpleado(request):
 
 def registrarCliente(request):
     if request.method == 'POST':
-        print("Entrando al bloque POST")  # Mensaje de consola
-
         nombre_usuario = request.POST.get("txtNombre_Usuario")
         contrasena = request.POST.get("txtContrasena")
         correo_electronico = request.POST.get("txtCorreoC")
@@ -137,16 +152,6 @@ def registrarCliente(request):
         numero_telefonico = request.POST.get("txtNumberTelephone")
         genero = request.POST.get("radioMasculino") or request.POST.get("radioFemenino") or request.POST.get("radioOtros")
 
-        print("Datos del formulario:")
-        print(f"Nombre de usuario: {nombre_usuario}")
-        print(f"Contraseña: {contrasena}")
-        print(f"Correo electrónico: {correo_electronico}")
-        print(f"Edad: {edad}")
-        print(f"Comuna: {comuna}")
-        print(f"Número telefónico: {numero_telefonico}")
-        print(f"Género: {genero}")
-
-        # Crear un objeto Cliente y guardarlo en la base de datos
         cliente = Cliente.objects.create(
             Nombre_Usuario=nombre_usuario,
             Contrasena=contrasena,
@@ -156,10 +161,10 @@ def registrarCliente(request):
             Numero_Telefonico=numero_telefonico,
             Genero=genero
         )
+
         cliente.save()
         messages.success(request, 'Cuenta de cliente registrada exitosamente.')
-        print("Cliente registrado exitosamente")  # Mensaje de consola
-        return redirect(reverse('registro'))
+        return redirect('registro')
 
     return render(request, 'core/registro.html')
 

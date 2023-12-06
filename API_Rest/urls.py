@@ -29,6 +29,8 @@ from .views import (
     registrarCliente,
     Validar_Pago,
     detalle_venta,
+    deshabilitar_producto,
+    habilitar_producto
 )
 
 urlpatterns = [
@@ -60,5 +62,7 @@ urlpatterns = [
     path("Generar_informes/", Generar_informes, name="Generar_informes"),
     path('registro/', registrarCliente, name='registrarCliente'),
     path("Validar_Pago/",Validar_Pago,name="Validar_Pago"),
-    path("detalle_venta/",detalle_venta,name="detalle_venta")
+    path("detalle_venta/",detalle_venta,name="detalle_venta"),
+    path("deshabilitarProducto/<Id_Producto>", deshabilitar_producto, name="deshabilitar_producto"),
+path("habilitarProducto/<Id_Producto>", habilitar_producto, name="habilitar_producto"),
 ]

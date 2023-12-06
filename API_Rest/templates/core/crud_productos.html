@@ -70,6 +70,7 @@
                                         <th>Categoria_Producto</th>
                                         <th>Marca_Producto</th>
                                         <th>Proveedor_Producto</th>
+                                        <th>Habilitar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -84,8 +85,16 @@
                                         <td>{{p.Categoria_Producto}}</td>
                                         <td>{{p.Marca_Producto}}</td>
                                         <td>{{p.Proveedor_Producto}}</td>
+                                        
                                         <td><a href="/edicionProducto/{{p.Id_Producto}}" class="btn btn-info">Editar</a></td>
                                         <td><a href="/eliminarProducto/{{p.Id_Producto}}" class="btn btn-danger btnEliminacion" id="btneliminar">Eliminar</a></td>
+                                        <td>
+                                            {% if p.habilitado %}
+                                                <a href="{% url 'deshabilitar_producto' p.Id_Producto %}" class="btn btn-warning">Deshabilitar</a>
+                                            {% else %}
+                                                <a href="{% url 'habilitar_producto' p.Id_Producto %}" class="btn btn-success">Habilitar</a>
+                                            {% endif %}
+                                        </td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>

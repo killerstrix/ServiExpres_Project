@@ -47,19 +47,21 @@
         
         <div class="productos">
             {% for producto in productos %}
-                <div class="card{{ forloop.counter }}">
-                    <div class="card" style="width: 18rem;">
-                        
-                        <div class="card-body">
-                            <h5 class="card-title">{{ producto.Nombre_Producto }}</h5>
-                            <p class="card-text">{{ producto.descripcion_Producto }}</p>
-                            <p class="card-text">${{ producto.Precio_Producto }}</p>
-                            <p class="card-text">marca: {{ producto.Marca_Producto }}</p>
-                            <a href="../Validar_Pago" class="btn btn-primary">Comprar</a>
+                {% if producto.habilitado %}
+                    <div class="card{{ forloop.counter }}">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ producto.Nombre_Producto }}</h5>
+                                <p class="card-text">{{ producto.descripcion_Producto }}</p>
+                                <p class="card-text">${{ producto.Precio_Producto }}</p>
+                                <p class="card-text">marca: {{ producto.Marca_Producto }}</p>
+                                <a href="../Validar_Pago" class="btn btn-primary">Comprar</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                {% endif %}
             {% endfor %}
+        </div>
 </div>
 </body>
 </html>
